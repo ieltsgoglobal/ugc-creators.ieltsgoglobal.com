@@ -138,6 +138,8 @@ model Subscription {
   creatorReferral   CreatorReferral @relation(fields: [creatorReferralId], references: [id], onDelete: Restrict)
 
   externalReference String          @unique
+  paidAmountMinor   Int
+  currency          String
   subscribedAt      DateTime
   createdAt         DateTime        @default(now())
 

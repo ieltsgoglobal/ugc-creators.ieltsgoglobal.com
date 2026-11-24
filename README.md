@@ -19,6 +19,9 @@ Tech Stack
 * Schema Generation: Prisma Zod Generator
 * Unit Testing: Vitest
 * E2E Testing: Playwright
+* API Documentation: OpenAPI + Scalar
+
+The Creator API reference is available at `/api/docs`. The OpenAPI 3.1 specification is available at `/api/openapi.json`.
 
 AI Development Guidelines
 

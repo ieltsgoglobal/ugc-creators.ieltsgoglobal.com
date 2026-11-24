@@ -44,6 +44,11 @@ export default async function ReferralsPage() {
     },
   });
 
+  const referralUrl = referral ? new URL(referral.url) : null;
+  if (referral && referralUrl?.hostname === "ieltsgoglobal.com") {
+    referralUrl.searchParams.set("ref", referral.id);
+  }
+
   const subscriptionsSold = referral?._count.subscriptions ?? 0;
   const activity = referral?.subscriptions ?? [];
   const today = new Date(`${chartDayKey.format(new Date())}T00:00:00+05:30`);
@@ -71,7 +76,7 @@ export default async function ReferralsPage() {
       <CreatorPageHero title="Referrals" />
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <CreatorPanel title="Your referral link" icon={<Ticket />}>
-          {referral ? <ReferralLink url={referral.url} /> : (
+          {referralUrl ? <ReferralLink url={referralUrl.href} /> : (
             <p className="text-sm text-muted-foreground">Your referral link hasn’t been assigned yet.</p>
           )}
         </CreatorPanel>

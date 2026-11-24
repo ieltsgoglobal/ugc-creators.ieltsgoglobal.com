@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
+    },
+    "naming-conventions": {
+      "source": "marcioaltoe/claude-craftkit",
+      "sourceType": "github",
+      "skillPath": "plugins/architecture-design/skills/naming-conventions/SKILL.md",
+      "computedHash": "5e5c1e5cfae22cb34a178761eb640509da56fe7fdb888c06de78f51b97df7c69"
+    },
+    "pick-ui-library": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/pick-ui-library/SKILL.md",
+      "computedHash": "c678a31d4b61cba9c8cda8e897bb7f1b0348011a59b67fc9fd0d431a2a0501aa"
+    }
+  }
+}

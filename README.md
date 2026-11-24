@@ -1,4 +1,4 @@
-# Next.js Application
+# ugc-creators.ieltsgoglobal.com
 
 A modern, full-stack web application built with Next.js, optimized for AI-assisted development.
 

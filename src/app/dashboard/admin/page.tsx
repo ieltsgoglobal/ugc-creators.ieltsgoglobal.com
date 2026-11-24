@@ -3,19 +3,23 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { CreatorPageHero, CreatorPanel } from "@/components/watermelon/creator-panels";
 import { database } from "@/lib/database";
-import { formatSubmissionDate } from "../dashboard/_lib/creator-data";
+import { formatSubmissionDate } from "../_lib/creator-data";
 import { approveApplication } from "./approve-application";
+import { InstagramAccounts } from "./instagram-accounts";
 
 export const metadata: Metadata = { title: "Application Admin | IELTS GoGlobal" };
 
 export default function AdminPage() {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 space-y-5 px-4 py-8 sm:px-8">
+    <div className="space-y-5">
       <CreatorPageHero title="Creator applications" />
       <Suspense fallback={<p role="status">Loading applications…</p>}>
         <ApplicationQueue />
       </Suspense>
-    </main>
+      <Suspense fallback={<p role="status">Loading Instagram accounts…</p>}>
+        <InstagramAccounts />
+      </Suspense>
+    </div>
   );
 }
 

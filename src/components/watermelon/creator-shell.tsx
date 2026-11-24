@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ClipboardList, LayoutDashboard, PanelLeft, UserRound, X } from "lucide-react";
+import { ClipboardList, LayoutDashboard, PanelLeft, ShieldCheck, UserRound, X } from "lucide-react";
 import { Dialog } from "radix-ui";
 import LogoIcon from "@/assets/logo-icon";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ const navigation = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/application", label: "Application", icon: ClipboardList },
   { href: "/dashboard/profile", label: "Profile", icon: UserRound },
+  { href: "/dashboard/admin", label: "Admin", icon: ShieldCheck },
 ];
 
 const control = "grid size-9 shrink-0 place-items-center border border-foreground/15 bg-background/30 hover:border-primary/50 hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-ring";
@@ -29,7 +30,7 @@ export function CreatorAvatar({ name, className }: { name: string; className?: s
 }
 
 function CreatorNavigation({ account, collapsed, onNavigate }: {
-  account: CreatorIdentity;
+  account: CreatorIdentity | null;
   collapsed?: boolean;
   onNavigate?: () => void;
 }) {
@@ -53,25 +54,27 @@ function CreatorNavigation({ account, collapsed, onNavigate }: {
         ))}
       </nav>
 
-      <div className="mt-auto border-t border-foreground/10 pt-3">
-        <Link
-          href="/dashboard/profile"
-          onClick={onNavigate}
-          title={collapsed ? account.name : undefined}
-          className="flex items-center gap-3 border border-transparent p-1.5 hover:border-primary/25 hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-ring"
-        >
-          <CreatorAvatar name={account.name} />
-          <span className={collapsed ? "sr-only" : "min-w-0"}>
-            <span className="block truncate text-sm font-medium">{account.name}</span>
-            <span className="block truncate text-xs text-muted-foreground">{account.email}</span>
-          </span>
-        </Link>
-      </div>
+      {account && (
+        <div className="mt-auto border-t border-foreground/10 pt-3">
+          <Link
+            href="/dashboard/profile"
+            onClick={onNavigate}
+            title={collapsed ? account.name : undefined}
+            className="flex items-center gap-3 border border-transparent p-1.5 hover:border-primary/25 hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-ring"
+          >
+            <CreatorAvatar name={account.name} />
+            <span className={collapsed ? "sr-only" : "min-w-0"}>
+              <span className="block truncate text-sm font-medium">{account.name}</span>
+              <span className="block truncate text-xs text-muted-foreground">{account.email}</span>
+            </span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
 
-export function CreatorShell({ account, children }: { account: CreatorIdentity; children: ReactNode }) {
+export function CreatorShell({ account, children }: { account: CreatorIdentity | null; children: ReactNode }) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);

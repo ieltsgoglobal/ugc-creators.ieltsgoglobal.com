@@ -12,7 +12,7 @@ export async function approveApplication(formData: FormData) {
     data: { approvedAt: new Date() },
   });
 
-  revalidatePath("/admin");
+  revalidatePath("/dashboard/admin");
   revalidatePath("/dashboard");
   revalidatePath("/dashboard/application");
 }

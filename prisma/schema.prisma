@@ -13,6 +13,7 @@ model User {
   email     String
   name      String
   creatorProfile CreatorProfile?
+  assignedInstagramAccount InstagramAccount?
 }
 
 model CreatorProfile {
@@ -42,4 +43,12 @@ model CreatorProfile {
   approvedAt            DateTime?
 
   @@map("creator_application")
+}
+
+model InstagramAccount {
+  id                 String  @id @default(cuid())
+  username           String  @unique
+  password           String
+  assignedToUserId   String? @unique
+  assignedToUser     User?   @relation(fields: [assignedToUserId], references: [id], onDelete: SetNull)
 }

@@ -1,82 +1,37 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
+import { ChevronRightIcon, FolderIcon, FolderOpenIcon, HomeIcon } from "lucide-react";
+import { DropdownMenu } from "radix-ui";
 
-import type { LucideIcon } from 'lucide-react'
-import { ChevronRightIcon, FolderIcon, FolderOpenIcon, HomeIcon } from 'lucide-react'
+const MENU_OPTIONS = ["Updates", "Changelog", "Archive"];
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-
-type RootSegment = {
-  label: string
-  href: string
-  icon: LucideIcon
-}
-
-const rootSegment: RootSegment = {
-  label: 'Home',
-  href: '#',
-  icon: HomeIcon
-}
-
-const currentLabel = 'Release Notes'
-
-const menuOptions = ['Updates', 'Changelog', 'Archive'] as const
-
-const Breadcrumb7 = () => {
-  const [open, setOpen] = useState(false)
-  const RootIcon = rootSegment.icon
+export default function Breadcrumb7() {
+  const [isOpen, setIsOpen] = useState(false);
+  const SectionIcon = isOpen ? FolderOpenIcon : FolderIcon;
 
   return (
-    <Breadcrumb>
-      <BreadcrumbList className='gap-1.5 text-sm'>
-        <BreadcrumbItem>
-          <BreadcrumbLink
-            href={rootSegment.href}
-            className='flex items-center gap-1.5 rounded-sm px-1 py-0.5 hover:text-foreground'
-          >
-            <RootIcon className='size-3.5 text-muted-foreground' />
-            <span className='sr-only'>{rootSegment.label}</span>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator className='text-muted-foreground/60'>
-          <ChevronRightIcon className='size-3.5' />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem className='flex items-center'>
-          <DropdownMenu open={open} onOpenChange={setOpen}>
-            <DropdownMenuTrigger className='inline-flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 text-muted-foreground outline-none hover:text-foreground'>
-              {open ? <FolderOpenIcon className='size-3.5' /> : <FolderIcon className='size-3.5' />}
-              <span className='sr-only'>{open ? 'Open section menu' : 'Open section menu'}</span>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align='start'>
-              {menuOptions.map((option) => (
-                <DropdownMenuItem key={option}>{option}</DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator className='text-muted-foreground/60'>
-          <ChevronRightIcon className='size-3.5' />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbPage className='rounded-sm px-1 py-0.5 font-medium'>{currentLabel}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  )
+    <nav aria-label="Breadcrumb">
+      <ol className="flex flex-wrap items-center gap-1.5 text-sm">
+        <li><a href="#" aria-label="Home"><HomeIcon className="size-3.5 text-muted-foreground" /></a></li>
+        <li aria-hidden="true"><ChevronRightIcon className="size-3.5 text-muted-foreground" /></li>
+        <li>
+          <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
+            <DropdownMenu.Trigger aria-label="Open section menu" className="rounded-sm px-1 py-0.5 text-muted-foreground hover:text-foreground">
+              <SectionIcon className="size-3.5" />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content align="start" sideOffset={4} className="z-50 rounded-md border bg-popover p-1 text-sm text-popover-foreground shadow-md">
+                {MENU_OPTIONS.map((option) => (
+                  <DropdownMenu.Item key={option} className="rounded-sm px-2 py-1 outline-none data-highlighted:bg-accent">{option}</DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        </li>
+        <li aria-hidden="true"><ChevronRightIcon className="size-3.5 text-muted-foreground" /></li>
+        <li aria-current="page" className="rounded-sm px-1 py-0.5 font-medium">Release Notes</li>
+      </ol>
+    </nav>
+  );
 }
-
-export default Breadcrumb7

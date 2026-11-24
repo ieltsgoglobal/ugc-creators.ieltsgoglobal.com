@@ -1,8 +1,9 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import { GithubIcon, NewTwitterIcon, Menu01Icon, Cancel01Icon } from "hugeicons-react";
 import { cn } from "@/lib/utils";
 import LogoIcon from "@/assets/logo-icon";
@@ -11,17 +12,15 @@ function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
-    <Button
+    <button
       type="button"
-      variant="outline"
-      size="icon-lg"
+      className="flex size-10 items-center justify-center rounded-lg border border-input hover:bg-accent [&>svg]:size-4"
       aria-label="Toggle light or dark theme"
-      disabled={!resolvedTheme}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
       <Sun aria-hidden="true" className="hidden dark:block" />
       <Moon aria-hidden="true" className="dark:hidden" />
-    </Button>
+    </button>
   );
 }
 

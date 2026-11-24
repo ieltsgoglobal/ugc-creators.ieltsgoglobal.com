@@ -2,9 +2,6 @@
 
 import { useId, useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Label } from '@/components/ui/label'
 
 type CheckboxCopy = {
   description: string
@@ -26,30 +23,31 @@ const Checkbox16 = () => {
 
   return (
     <div className='flex max-w-sm items-start gap-3.5'>
-      <Checkbox
+      <input
+        type="checkbox"
         id={id}
         checked={isChecked}
-        onCheckedChange={(checked) => setIsChecked(checked === true)}
-        className='mt-0.5 data-checked:border-sky-600 data-checked:bg-sky-600 dark:data-checked:border-sky-500 dark:data-checked:bg-sky-500'
+        onChange={(event) => setIsChecked(event.currentTarget.checked)}
+        className='mt-0.5 size-4 shrink-0 accent-sky-600'
       />
       <div className='grid gap-2.5'>
-        <Label htmlFor={id} className='text-sm leading-4 font-medium'>
+        <label htmlFor={id} className='text-sm leading-4 font-medium'>
           {checkboxCopy.label}
-        </Label>
+        </label>
         <p className='text-muted-foreground text-[13px] leading-5'>
           {checkboxCopy.description}
         </p>
         <div className='flex flex-wrap gap-2'>
-          <Button variant='outline' size='sm' onClick={handleReset}>
+          <button type='button' className='rounded-lg border border-input px-3 py-1 text-sm' onClick={handleReset}>
             Reset
-          </Button>
-          <Button
-            size='sm'
+          </button>
+          <button
+            type='button'
             disabled={!isChecked}
-            className='bg-sky-600 text-white hover:bg-sky-700 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400'
+            className='rounded-lg bg-sky-600 px-3 py-1 text-sm text-white hover:bg-sky-700 disabled:opacity-50 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400'
           >
             Continue
-          </Button>
+          </button>
         </div>
       </div>
     </div>

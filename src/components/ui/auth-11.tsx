@@ -1,8 +1,11 @@
 "use client";
 
 import Script from "next/script";
+import { useRouter } from "next/navigation";
+import { LogIn } from "lucide-react";
+import { CreatorPageHero, CreatorPanel } from "@/components/watermelon/creator-panels";
 import { useRef, useState } from "react";
-import { OnboardingFieldError, OnboardingSetup } from "@/components/watermelon/onboarding-setup";
+import { OnboardingFieldError } from "@/components/watermelon/onboarding-setup";
 
 const SIGN_IN_ERROR = "Google sign-in couldn’t finish. Please try again.";
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
@@ -21,7 +24,8 @@ declare global {
   }
 }
 
-export default function Auth11({ imageUrl }: { imageUrl: string }) {
+export default function Auth11() {
+  const router = useRouter();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
   const googleButton = useRef<HTMLDivElement>(null);
@@ -36,7 +40,7 @@ export default function Auth11({ imageUrl }: { imageUrl: string }) {
         body: JSON.stringify({ credential }),
       });
       if (!response.ok) throw new Error("Google sign-in failed");
-      window.location.assign("/onboarding");
+      router.replace("/onboarding");
     } catch {
       setError(SIGN_IN_ERROR);
       setIsPending(false);
@@ -58,22 +62,23 @@ export default function Auth11({ imageUrl }: { imageUrl: string }) {
     google.renderButton(googleButton.current, {
       theme: "outline",
       size: "large",
-      shape: "pill",
+      shape: "rectangular",
       text: "continue_with",
     });
   }
 
   return (
-    <OnboardingSetup title="Creator program" subtitle="IELTS Go Global" imageUrl={imageUrl} progress={null}>
-      <div className="flex min-h-52 flex-col items-start justify-center gap-4">
-        <h2 className="text-lg font-semibold tracking-tight">Sign in to get started</h2>
+    <div className="mx-auto grid w-full max-w-5xl gap-5">
+      <CreatorPageHero title="Creator sign-in" />
+      <CreatorPanel title="Continue with Google" icon={<LogIn />}>
+        <p className="mb-4 text-sm text-muted-foreground">Sign in to start or return to your creator application.</p>
         {GOOGLE_CLIENT_ID && <Script src="https://accounts.google.com/gsi/client"
           onReady={renderGoogleButton} onError={() => setError(SIGN_IN_ERROR)} />}
         <div ref={googleButton} hidden={isPending} />
-        {isPending && <p role="status" className="text-sm text-muted-foreground">Signing in…</p>}
+        {isPending && <p role="status" className="font-mono text-xs text-muted-foreground">Signing in…</p>}
         {!GOOGLE_CLIENT_ID && <OnboardingFieldError>Google sign-in is not configured.</OnboardingFieldError>}
         {error && <OnboardingFieldError>{error}</OnboardingFieldError>}
-      </div>
-    </OnboardingSetup>
+      </CreatorPanel>
+    </div>
   );
 }

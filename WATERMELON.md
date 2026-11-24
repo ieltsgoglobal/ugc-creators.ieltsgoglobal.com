@@ -18,7 +18,7 @@ Use the existing homepage at `/` and its `landing-01` components as the visual r
 
 ## Onboarding
 
-- `OnboardingApplicationSetup` for the creator application, with the shared dashboard hero, framed progress, and form actions. `OnboardingSetup` provides the artwork layout for sign-in.
+- `OnboardingApplicationSetup` for the creator application, with the shared dashboard hero, framed progress, and form actions. `CreatorEntryShell` provides the shared masthead and background for onboarding and sign-in.
 - `OnboardingSetupInput` for square, monospace fields in the creator application.
 - `Checkbox13` for age confirmation and agreements with a selectable card.
 - `RadioGroup7` for paired Yes/No choices.

@@ -1,85 +1,43 @@
 "use client";
 
 import type { ComponentProps, ReactNode, Ref } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
+import LogoIcon from "@/assets/logo-icon";
+import { ThemeToggle } from "./templates/landing-01/landing/navbar";
 import { ArrowRight, ChevronLeft } from "lucide-react";
 import { CreatorFrameCorners, CreatorPageHero } from "./creator-panels";
 
-interface OnboardingSetupProps {
+interface OnboardingApplicationSetupProps {
   title: string;
-  subtitle: string;
   progress: ReactNode;
   children: ReactNode;
-  imageUrl: string;
   formId?: string;
   action?: string;
   isSubmitting?: boolean;
   onBack?: () => void;
 }
 
-const SPRING = { type: "spring", stiffness: 320, damping: 30, mass: 0.7 } as const;
-
-export function OnboardingSetup({
-  title, subtitle, progress, children, imageUrl, formId, action, isSubmitting, onBack,
-}: OnboardingSetupProps) {
-  const prefersReducedMotion = useReducedMotion();
-
+export function CreatorEntryShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center">
-      <motion.div
-        initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={SPRING}
-        className="relative z-10 grid w-full max-w-5xl grid-cols-1 rounded-[24px] border-2 border-[#EFEDF5] bg-[#F5F5F7] shadow-xl lg:grid-cols-[1.2fr_0.8fr] dark:border-[#1a1a1a] dark:bg-[#0A0A0A]"
-      >
-        <div className="order-2 flex min-w-0 flex-col lg:order-1">
-          <div className="m-1.5 flex h-full flex-col rounded-[18px] bg-white p-5 shadow-sm sm:p-8 dark:bg-[#111]">
-            <h1 className="text-[22px] font-medium text-[#111] sm:text-[24px] dark:text-[#EEE]">{title}</h1>
-            <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
-            <div className="my-5 border-t-[1.6px] border-dashed border-gray-200 dark:border-[#222]" />
-            {children}
-          </div>
-
-          {action && formId && (
-            <div className="mt-auto flex flex-wrap items-center justify-between gap-4 p-5 pt-2 sm:px-8 sm:pb-8">
-              {progress}
-              <div className="flex flex-wrap items-center gap-2">
-                {onBack && <button type="button" onClick={onBack} className="flex h-10 items-center gap-1 rounded-full border border-border px-3 text-sm">
-                  <ChevronLeft size={16} aria-hidden="true" /> Back
-                </button>}
-                <motion.button
-                  type="submit" form={formId} disabled={isSubmitting}
-                  whileHover={prefersReducedMotion ? undefined : { scale: 1.04 }}
-                  whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
-                  transition={SPRING}
-                  className="h-10 rounded-full bg-[#0F0F0F] px-8 text-[13px] font-medium text-[#D7D7D7] shadow-lg active:shadow-sm dark:bg-[#EEE] dark:text-black"
-                >
-                  {action}
-                </motion.button>
-              </div>
-            </div>
-          )}
+    <>
+      <header className="border-b border-foreground/10 bg-background dark:bg-[#101010]">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-4 sm:px-8">
+          <Link href="/" className="flex items-center gap-3 font-mono text-xs font-bold tracking-widest uppercase focus-visible:outline-2 focus-visible:outline-ring sm:text-sm">
+            <LogoIcon className="size-8 text-green-700 dark:text-primary" /> IELTS Go Global
+          </Link>
+          <ThemeToggle className="rounded-none border-foreground/15" />
         </div>
-
-        <div className="relative order-1 h-48 overflow-hidden rounded-t-[24px] bg-[#FFF0E9] sm:h-64 lg:order-2 lg:h-auto lg:min-h-full lg:rounded-t-none lg:rounded-r-[24px] dark:bg-[#2A1A14]">
-          <motion.img
-            src={imageUrl}
-            alt=""
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={SPRING}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-black/5 dark:bg-black/20" />
-        </div>
-      </motion.div>
-    </div>
+      </header>
+      <main className="flex flex-1 flex-col bg-[radial-gradient(circle_at_center,var(--color-border)_1px,transparent_1px)] bg-size-[24px_24px] px-4 py-8 sm:px-8 sm:py-12 dark:bg-[#101010]">
+        {children}
+      </main>
+    </>
   );
 }
 
 export function OnboardingApplicationSetup({
   title, progress, children, formId, action, isSubmitting, onBack,
-}: Omit<OnboardingSetupProps, "imageUrl" | "subtitle">) {
+}: OnboardingApplicationSetupProps) {
   return (
     <div className="mx-auto grid w-full max-w-5xl gap-5">
       <CreatorPageHero title={title} />

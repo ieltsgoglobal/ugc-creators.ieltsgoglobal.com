@@ -1,3 +1,4 @@
+import { Wallet } from "lucide-react";
 import { connection } from "next/server";
 import { CreatorPanel } from "@/components/watermelon/creator-panels";
 import { database } from "@/lib/database";
@@ -24,7 +25,7 @@ export async function WithdrawalQueue() {
   ]);
 
   return (
-    <CreatorPanel title="Withdrawal requests">
+    <CreatorPanel title="Withdrawal requests" icon={<Wallet />}>
       <p className="mb-4 text-sm text-muted-foreground">
         {pending.length} pending. Send the payout separately before marking a request paid.
       </p>
@@ -40,7 +41,7 @@ export async function WithdrawalQueue() {
                   <p className="wrap-break-word text-sm">{request.user.name}</p>
                   <p className="mt-1 text-xs text-muted-foreground">Requested {formatSubmissionDate(request.createdAt)}</p>
                   {request.status === "PENDING" && (
-                    <p className="mt-2 wrap-break-word text-sm text-muted-foreground">
+                    <p className="mt-2 wrap-break-word border-l-2 border-primary/50 bg-primary/5 px-3 py-2 font-mono text-xs text-muted-foreground">
                       {request.payoutDestination
                         ? `${request.payoutMethod === "PAYPAL" ? "PayPal" : "UPI"} · ${request.payoutDestination}`
                         : "Payout details not recorded"}

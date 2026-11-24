@@ -24,7 +24,7 @@ export function WithdrawalControls({ id, amount }: { id: string; amount: string 
     >
       <input type="hidden" name="withdrawalId" value={id} />
       <div className="flex flex-wrap gap-2">
-        <button type="submit" name="status" value="PAID" disabled={pending} className="min-h-10 bg-primary px-3 font-mono text-xs font-bold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50">
+        <button type="submit" name="status" value="PAID" disabled={pending} className="min-h-10 bg-primary px-3 font-mono text-xs font-bold tracking-wide text-primary-foreground uppercase hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50">
           Mark paid
         </button>
         <button type="submit" name="status" value="REJECTED" disabled={pending} className="min-h-10 border border-border px-3 font-mono text-xs font-medium hover:border-destructive focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50">

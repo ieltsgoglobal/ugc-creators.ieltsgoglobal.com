@@ -1,3 +1,4 @@
+import { Camera } from "lucide-react";
 import { connection } from "next/server";
 import { CreatorPanel } from "@/components/watermelon/creator-panels";
 import { database } from "@/lib/database";
@@ -29,7 +30,7 @@ export async function InstagramAccounts() {
   const available = accounts.filter(({ assignedToUserId }) => assignedToUserId === null);
 
   return (
-    <CreatorPanel title="Instagram accounts">
+    <CreatorPanel title="Instagram accounts" icon={<Camera />}>
       <p className="mb-5 font-mono text-xs text-muted-foreground">
         {available.length} available · {accounts.length - available.length} assigned
       </p>

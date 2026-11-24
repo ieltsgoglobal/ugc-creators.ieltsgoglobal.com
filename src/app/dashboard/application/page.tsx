@@ -1,3 +1,4 @@
+import { ClipboardList, Megaphone } from "lucide-react";
 import type { Metadata } from "next";
 import { ApplicationStatus, CreatorFields, CreatorPanel, CreatorPageHero } from "@/components/watermelon/creator-panels";
 import { formatSubmissionDate, getCreatorProfile } from "../_lib/creator-data";
@@ -18,7 +19,7 @@ export default async function ApplicationPage() {
       <ApplicationStatus submittedDate={profile ? formatSubmissionDate(profile.submittedAt) : undefined} approvedDate={profile?.approvedAt ? formatSubmissionDate(profile.approvedAt) : undefined} />
       {profile && (
         <div className="grid items-start gap-5 xl:grid-cols-2">
-          <CreatorPanel title="Submitted creator details">
+          <CreatorPanel title="Submitted creator details" icon={<ClipboardList />}>
             <CreatorFields fields={[
               ["Name", profile.fullName],
               ["Country", profile.country],
@@ -28,7 +29,7 @@ export default async function ApplicationPage() {
               ["Audience country", profile.audienceCountry || null],
             ]} />
           </CreatorPanel>
-          <CreatorPanel title="Promotion & availability">
+          <CreatorPanel title="Promotion & availability" icon={<Megaphone />}>
             <CreatorFields fields={[
               ["Reported followers", profile.followers?.toLocaleString("en")],
               ["Videos per week", profile.weeklyVideos?.toLocaleString("en")],

@@ -1,3 +1,4 @@
+import { ClipboardList } from "lucide-react";
 import type { Metadata } from "next";
 import { connection } from "next/server";
 import { Suspense } from "react";
@@ -44,7 +45,7 @@ async function ApplicationQueue() {
   const approvedCount = applications.filter(({ approvedAt }) => approvedAt !== null).length;
 
   return (
-    <CreatorPanel title="Application queue">
+    <CreatorPanel title="Application queue" icon={<ClipboardList />}>
       <p className="mb-4 font-mono text-xs text-muted-foreground">
         {applications.length - approvedCount} awaiting approval · {approvedCount} approved
       </p>
@@ -75,7 +76,7 @@ async function ApplicationQueue() {
                   <button
                     type="submit"
                     aria-label={`Approve application for ${application.instagramUsername}`}
-                    className="bg-primary px-4 py-2 font-mono text-xs font-bold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="bg-primary px-4 py-2 font-mono text-xs font-bold tracking-wide text-primary-foreground uppercase hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
                     Approve
                   </button>

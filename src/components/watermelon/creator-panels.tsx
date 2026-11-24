@@ -44,11 +44,14 @@ export function CreatorPageHero({ title, children, avatar }: {
   );
 }
 
-export function CreatorPanel({ title, children }: { title: string; children: ReactNode }) {
+export function CreatorPanel({ title, icon, children }: { title: string; icon?: ReactNode; children: ReactNode }) {
   return (
     <section className="relative min-w-0 border border-foreground/10 bg-background text-foreground dark:bg-neutral-950">
       <CreatorFrameCorners />
-      <Heading variant="small" className="border-b border-foreground/10 px-5 py-4 font-semibold">{title}</Heading>
+      <Heading variant="small" className="flex items-center gap-2.5 border-b border-foreground/10 bg-foreground/[0.025] px-5 py-4 font-semibold">
+        {icon && <span aria-hidden="true" className="shrink-0 text-green-700 dark:text-primary [&>svg]:size-4">{icon}</span>}
+        {title}
+      </Heading>
       <div className="p-5">{children}</div>
     </section>
   );
@@ -95,17 +98,17 @@ export function ApplicationStatus({ submittedDate, approvedDate, overview = fals
   return (
     <section className="relative flex flex-col gap-4 border border-foreground/10 bg-background p-5 sm:flex-row sm:items-center sm:p-6 dark:bg-neutral-950">
       <CreatorFrameCorners />
-      <span className="grid size-11 shrink-0 place-items-center border border-primary/25 bg-primary/10">
+      <span className="grid size-11 shrink-0 place-items-center border border-primary/25 bg-primary/10 text-green-700 dark:text-primary">
         <StatusIcon aria-hidden="true" className="size-5" />
       </span>
       <div className="flex-1">
         <h2 className="font-semibold">{approvedDate ? "Application approved" : submittedDate ? "Application submitted" : "Application not submitted"}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="mt-1 font-mono text-xs leading-relaxed text-muted-foreground">
           {approvedDate ? `Approved on ${approvedDate}` : submittedDate ? `Submitted on ${submittedDate}` : "Complete onboarding to submit your creator application."}
         </p>
       </div>
       {(overview || !submittedDate) && (
-        <Link href={submittedDate ? "/dashboard/application" : "/onboarding"} className="inline-flex w-fit items-center gap-2 bg-primary px-4 py-2.5 font-mono text-xs font-bold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+        <Link href={submittedDate ? "/dashboard/application" : "/onboarding"} className="inline-flex w-fit items-center gap-2 bg-primary px-4 py-2.5 font-mono text-xs font-bold tracking-wide text-primary-foreground uppercase hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
           {submittedDate ? "View application" : "Continue onboarding"}
           <ArrowUpRight aria-hidden="true" className="size-4" />
         </Link>

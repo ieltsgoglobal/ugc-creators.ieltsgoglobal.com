@@ -3,8 +3,8 @@
 import { useActionState } from "react";
 import { assignInstagramAccount, createInstagramAccount } from "./instagram-account-actions";
 
-const fieldClass = "h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring";
-const buttonClass = "h-10 w-fit bg-primary px-4 font-mono text-xs font-bold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50";
+const fieldClass = "h-10 w-full min-w-0 border border-foreground/15 bg-background/60 px-3 font-mono text-sm focus-visible:outline-2 focus-visible:outline-ring";
+const buttonClass = "h-10 w-fit bg-primary px-4 font-mono text-xs font-bold tracking-wide text-primary-foreground uppercase hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50";
 
 function ActionFeedback({ result }: { result: { message: string; error?: true } | null }) {
   return (

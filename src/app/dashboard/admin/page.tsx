@@ -6,13 +6,17 @@ import { database } from "@/lib/database";
 import { formatSubmissionDate } from "../_lib/creator-data";
 import { approveApplication } from "./approve-application";
 import { InstagramAccounts } from "./instagram-accounts";
+import { WithdrawalQueue } from "./withdrawal-queue";
 
 export const metadata: Metadata = { title: "Application Admin | IELTS GoGlobal" };
 
 export default function AdminPage() {
   return (
     <div className="space-y-5">
-      <CreatorPageHero title="Creator applications" />
+      <CreatorPageHero title="Creator admin" />
+      <Suspense fallback={<p role="status">Loading withdrawals…</p>}>
+        <WithdrawalQueue />
+      </Suspense>
       <Suspense fallback={<p role="status">Loading applications…</p>}>
         <ApplicationQueue />
       </Suspense>

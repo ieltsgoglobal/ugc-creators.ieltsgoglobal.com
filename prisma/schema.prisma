@@ -14,6 +14,8 @@ model User {
   name      String
   creatorProfile CreatorProfile?
   assignedInstagramAccount InstagramAccount?
+  walletTransactions CreatorWalletTransaction[]
+  withdrawalRequests CreatorWithdrawalRequest[]
 }
 
 model CreatorProfile {
@@ -51,4 +53,46 @@ model InstagramAccount {
   password           String
   assignedToUserId   String? @unique
   assignedToUser     User?   @relation(fields: [assignedToUserId], references: [id], onDelete: SetNull)
+}
+
+enum CreatorWalletTransactionKind {
+  CREDIT
+  WITHDRAWAL_HOLD
+  WITHDRAWAL_RELEASE
+}
+
+enum CreatorWithdrawalStatus {
+  PENDING
+  PAID
+  REJECTED
+}
+
+model CreatorWithdrawalRequest {
+  id           String                     @id @default(cuid())
+  userId       String
+  user         User                       @relation(fields: [userId], references: [id], onDelete: Restrict)
+  requestKey   String
+  amountPaise  Int
+  status       CreatorWithdrawalStatus    @default(PENDING)
+  createdAt    DateTime                   @default(now())
+  transactions CreatorWalletTransaction[]
+
+  @@unique([userId, requestKey])
+  @@index([userId, createdAt])
+  @@map("creator_withdrawal_requests")
+}
+
+model CreatorWalletTransaction {
+  id                  String                       @id @default(cuid())
+  userId              String
+  user                User                         @relation(fields: [userId], references: [id], onDelete: Restrict)
+  withdrawalRequestId String?
+  withdrawalRequest   CreatorWithdrawalRequest?    @relation(fields: [withdrawalRequestId], references: [id], onDelete: Restrict)
+  kind                CreatorWalletTransactionKind
+  amountPaise         Int
+  createdAt           DateTime                     @default(now())
+
+  @@unique([withdrawalRequestId, kind])
+  @@index([userId, createdAt])
+  @@map("creator_wallet_transactions")
 }

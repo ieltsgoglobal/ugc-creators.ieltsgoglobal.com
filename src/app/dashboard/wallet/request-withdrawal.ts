@@ -36,7 +36,8 @@ export async function requestWithdrawal(
 
   try {
     await database.$transaction(async (transaction) => {
-      // Write first so SQLite serializes concurrent reservations before the balance read.
+      // Lock the wallet before reading the balance so concurrent withdrawals queue.
+      await transaction.$queryRaw`SELECT "userId" FROM "creator_wallets" WHERE "userId" = ${user.id} FOR UPDATE`;
       const withdrawal = await transaction.creatorWithdrawalRequest.create({
         data: { ...requestKey, amountPaise },
         select: { id: true },
@@ -65,7 +66,7 @@ export async function requestWithdrawal(
         },
         select: { id: true },
       });
-    });
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted });
   } catch (error) {
     if (error instanceof PayoutMethodChangedError) {
       revalidatePath("/dashboard/wallet");

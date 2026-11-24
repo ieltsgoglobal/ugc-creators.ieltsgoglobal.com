@@ -11,12 +11,11 @@ import { getInstagramProfileError, ONBOARDING_STEPS } from "../_lib/onboarding-s
 import type { CreatorField, OnboardingStepProps } from "../_lib/onboarding-types";
 import Checkbox13 from "@/components/watermelon/checkbox-13";
 import RadioGroup7 from "@/components/watermelon/radio-group-7";
-import { OnboardingFieldError, OnboardingFieldLabel, OnboardingFields, OnboardingSetup, OnboardingSetupInput, OnboardingStepHeading } from "@/components/watermelon/onboarding-setup";
+import { OnboardingFieldError, OnboardingFieldLabel, OnboardingFields, OnboardingApplicationSetup, OnboardingSetupInput, OnboardingStepHeading } from "@/components/watermelon/onboarding-setup";
 
 const APPLICATION_FORM_ID = "creator-application";
 
-export default function OnboardingForm({ imageUrl, fullName, email, hasApplication }: {
-  imageUrl: string;
+export default function OnboardingForm({ fullName, email, hasApplication }: {
   fullName: string;
   email: string;
   hasApplication: boolean;
@@ -63,9 +62,8 @@ export default function OnboardingForm({ imageUrl, fullName, email, hasApplicati
   }
 
   return (
-      <OnboardingSetup title="Creator onboarding" subtitle="IELTS Go Global"
+      <OnboardingApplicationSetup title="Creator application"
         progress={<OnboardingProgress step={stepIndex + 1} totalSteps={ONBOARDING_STEPS.length} />}
-        imageUrl={imageUrl}
         formId={APPLICATION_FORM_ID}
         action={isComplete ? undefined : isSubmitting ? "Submitting…" : isLastStep ? "Submit application" : "Continue"}
         isSubmitting={isSubmitting}
@@ -73,7 +71,10 @@ export default function OnboardingForm({ imageUrl, fullName, email, hasApplicati
       <section key={isComplete ? "complete" : step.title}>
         <OnboardingFields>
         <OnboardingStepHeading headingRef={headingRef} title={isComplete ? "Application submitted" : step.title} />
-        {isComplete ? <p role="status">We’ve received your creator application.</p> : (
+        {isComplete ? <div className="space-y-4">
+          <p role="status" className="text-sm text-muted-foreground">We’ve received your creator application.</p>
+          <Link href="/dashboard" className="inline-flex min-h-11 items-center bg-primary px-4 font-mono text-xs font-bold tracking-wide text-primary-foreground uppercase hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">Go to dashboard</Link>
+        </div> : (
           <form id={APPLICATION_FORM_ID} onSubmit={advance}>
             <OnboardingFields>
               <ActiveStep renderField={(field) => <OnboardingField key={field.name} field={field}
@@ -86,7 +87,7 @@ export default function OnboardingForm({ imageUrl, fullName, email, hasApplicati
         )}
         </OnboardingFields>
       </section>
-      </OnboardingSetup>
+      </OnboardingApplicationSetup>
   );
 }
 

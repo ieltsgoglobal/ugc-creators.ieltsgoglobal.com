@@ -2,7 +2,8 @@
 
 import type { ComponentProps, ReactNode, Ref } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ChevronLeft } from "lucide-react";
+import { ArrowRight, ChevronLeft } from "lucide-react";
+import { CreatorFrameCorners, CreatorPageHero } from "./creator-panels";
 
 interface OnboardingSetupProps {
   title: string;
@@ -76,8 +77,35 @@ export function OnboardingSetup({
   );
 }
 
+export function OnboardingApplicationSetup({
+  title, progress, children, formId, action, isSubmitting, onBack,
+}: Omit<OnboardingSetupProps, "imageUrl" | "subtitle">) {
+  return (
+    <div className="mx-auto grid w-full max-w-5xl gap-5">
+      <CreatorPageHero title={title} />
+      <div className="relative border border-foreground/10 bg-background dark:bg-neutral-950">
+        <CreatorFrameCorners />
+        {action && <div className="border-b border-border bg-foreground/[0.025] px-5 py-4 sm:px-8">{progress}</div>}
+        <div className="px-5 py-6 sm:px-8 sm:py-8">{children}</div>
+        {action && formId && (
+          <div className="flex flex-wrap items-center justify-end gap-3 border-t border-border bg-foreground/[0.025] px-5 py-4 sm:px-8">
+            {onBack && (
+              <button type="button" onClick={onBack} className="inline-flex min-h-11 items-center gap-2 border border-foreground/15 px-4 font-mono text-xs hover:border-primary/50 focus-visible:outline-2 focus-visible:outline-ring">
+                <ChevronLeft aria-hidden="true" className="size-4" /> Back
+              </button>
+            )}
+            <button type="submit" form={formId} disabled={isSubmitting} className="inline-flex min-h-11 items-center gap-2 bg-primary px-4 font-mono text-xs font-bold tracking-wide text-primary-foreground uppercase hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50">
+              {action} <ArrowRight aria-hidden="true" className="size-4" />
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function OnboardingSetupInput(props: ComponentProps<"input">) {
-  return <input {...props} className="mt-2 h-10 w-full rounded-full border border-[#EEEDF3] bg-white px-6 text-left text-[13px] text-[#111] transition-all outline-none placeholder:text-[#A2A2A4] focus:ring-1 focus:ring-[#d6d5db] dark:border-[#222] dark:bg-[#111] dark:text-[#EEE] dark:placeholder:text-[#444] dark:focus:ring-[#333]" />;
+  return <input {...props} className="min-h-11 w-full border border-foreground/15 bg-background px-3 font-mono text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-ring aria-invalid:border-destructive read-only:bg-muted/40" />;
 }
 
 export function OnboardingFields({ children }: { children: ReactNode }) {
@@ -85,7 +113,7 @@ export function OnboardingFields({ children }: { children: ReactNode }) {
 }
 
 export function OnboardingFieldLabel(props: ComponentProps<"label">) {
-  return <label {...props} className="mb-2 block text-sm font-medium" />;
+  return <label {...props} className="mb-2 block font-mono text-xs text-muted-foreground" />;
 }
 
 export function OnboardingFieldError(props: ComponentProps<"p">) {
@@ -96,5 +124,5 @@ export function OnboardingStepHeading({ headingRef, title }: {
   headingRef: Ref<HTMLHeadingElement>;
   title: string;
 }) {
-  return <h2 ref={headingRef} tabIndex={-1} className="scroll-mt-24 text-lg font-semibold tracking-tight">{title}</h2>;
+  return <h2 ref={headingRef} tabIndex={-1} className="scroll-mt-24 font-heading text-2xl font-semibold tracking-tight">{title}</h2>;
 }

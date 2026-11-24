@@ -18,8 +18,8 @@ Use the existing homepage at `/` and its `landing-01` components as the visual r
 
 ## Onboarding
 
-- `OnboardingSetup` for the creator application with an artwork panel, step progress, and form actions.
-- `OnboardingSetupInput` for pill-shaped fields inside Onboarding Setup.
+- `OnboardingApplicationSetup` for the creator application, with the shared dashboard hero, framed progress, and form actions. `OnboardingSetup` provides the artwork layout for sign-in.
+- `OnboardingSetupInput` for square, monospace fields in the creator application.
 - `Checkbox13` for age confirmation and agreements with a selectable card.
 - `RadioGroup7` for paired Yes/No choices.
 - `OnboardingFields`, `OnboardingFieldLabel`, `OnboardingFieldError`, and `OnboardingStepHeading` for onboarding form layout and feedback.

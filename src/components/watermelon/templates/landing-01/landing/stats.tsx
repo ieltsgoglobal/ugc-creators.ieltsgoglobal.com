@@ -80,8 +80,8 @@ function Crosshair({ position }: { position: 'top-left' | 'top-right' | 'bottom-
         isLeft ? "left-8 -translate-x-1/2 md:left-16" : "right-8 translate-x-1/2 md:right-16"
       )}
     >
-      <div className="absolute top-1/2 right-0 left-0 h-px bg-white/20"></div>
-      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-white/20"></div>
+      <div className="absolute top-1/2 right-0 left-0 h-px bg-foreground/20"></div>
+      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/20"></div>
     </div>
   );
 }
@@ -90,13 +90,13 @@ function StatCard({ stat, variants }: { stat: typeof statsData[0], variants: Var
   return (
     <motion.div
       variants={variants}
-      className="group relative border border-white/10 bg-neutral-950 backdrop-blur-md transition-colors duration-300 hover:bg-white/2"
+      className="group relative border border-foreground/10 bg-neutral-950 backdrop-blur-md transition-colors duration-300 hover:bg-foreground/2"
     >
       {/* Corner Accents on the box */}
-      <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-white/40"></div>
-      <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-white/40"></div>
-      <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-white/40"></div>
-      <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-white/40"></div>
+      <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-foreground/40"></div>
+      <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-foreground/40"></div>
+      <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-foreground/40"></div>
+      <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-foreground/40"></div>
 
       <div className="flex h-full w-full flex-col items-center justify-center p-10 text-center">
         <div className="group-hover:text-primary mb-6 opacity-80 transition-transform duration-300 group-hover:scale-110">
@@ -105,7 +105,7 @@ function StatCard({ stat, variants }: { stat: typeof statsData[0], variants: Var
         <div className="text-foreground mb-3 font-mono text-4xl font-bold tracking-tight tabular-nums lg:text-5xl">
           <CountingNumber value={stat.value} />
         </div>
-        <div className="text-xs font-bold tracking-widest text-white/40 uppercase">
+        <div className="text-xs font-bold tracking-widest text-foreground/40 uppercase">
           {stat.label}
         </div>
       </div>
@@ -135,12 +135,12 @@ export default function Stats() {
   };
 
   return (
-    <section className="bg-[#101010] relative w-full overflow-hidden py-24 font-mono md:py-32">
+    <section className="bg-background dark:bg-[#101010] relative w-full overflow-hidden py-24 font-mono md:py-32">
       {/* Decorative Technical Borders */}
-      <div className="absolute top-0 left-0 hidden w-full border-t border-white/5 lg:block" />
-      <div className="absolute bottom-0 left-0 hidden w-full border-b border-white/5 lg:block" />
-      <div className="absolute top-0 bottom-0 left-8 hidden w-px bg-white/5 md:left-16 lg:block"></div>
-      <div className="absolute top-0 right-8 bottom-0 hidden w-px bg-white/5 md:right-16 lg:block"></div>
+      <div className="absolute top-0 left-0 hidden w-full border-t border-foreground/5 lg:block" />
+      <div className="absolute bottom-0 left-0 hidden w-full border-b border-foreground/5 lg:block" />
+      <div className="absolute top-0 bottom-0 left-8 hidden w-px bg-foreground/5 md:left-16 lg:block"></div>
+      <div className="absolute top-0 right-8 bottom-0 hidden w-px bg-foreground/5 md:right-16 lg:block"></div>
 
       {/* Crosshairs at intersections */}
       <Crosshair position="top-left" />
@@ -175,7 +175,7 @@ export default function Stats() {
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className="mt-6 max-w-2xl font-mono text-sm tracking-widest text-pretty text-white/50 uppercase"
+            className="mt-6 max-w-2xl font-mono text-sm tracking-widest text-pretty text-foreground/50 uppercase"
           >
             Stop re-building the same interfaces.
             <br className="mt-2 block md:hidden" /> Watermelon UI provides an

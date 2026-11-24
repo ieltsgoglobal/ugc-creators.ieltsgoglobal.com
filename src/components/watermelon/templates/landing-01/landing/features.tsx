@@ -29,12 +29,12 @@ function FeatureCard({
 }) {
   return (
     <motion.div variants={variants} className={cn("h-full w-full", className)}>
-      <div className="group relative h-full w-full border border-white/10 bg-black/40 backdrop-blur-md transition-colors duration-300 hover:bg-white/2">
+      <div className="group relative h-full w-full border border-foreground/10 bg-foreground/5 dark:bg-black/40 backdrop-blur-md transition-colors duration-300 hover:bg-foreground/2">
         {/* Corner Accents */}
-        <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-white/40"></div>
-        <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-white/40"></div>
-        <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-white/40"></div>
-        <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-white/40"></div>
+        <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-foreground/40"></div>
+        <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-foreground/40"></div>
+        <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-foreground/40"></div>
+        <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-foreground/40"></div>
 
         <div className="relative z-10 flex h-full w-full flex-col items-start justify-center overflow-hidden p-8">
           <div className="mb-6 opacity-80 transition-transform duration-300 group-hover:scale-110">
@@ -43,7 +43,7 @@ function FeatureCard({
           <h3 className="text-foreground mb-3 text-xl font-bold tracking-widest uppercase">
             {title}
           </h3>
-          <p className={cn("text-sm leading-relaxed tracking-widest text-white/50 uppercase", descriptionClassName)}>
+          <p className={cn("text-sm leading-relaxed tracking-widest text-foreground/50 uppercase", descriptionClassName)}>
             {description}
           </p>
           {children}
@@ -75,7 +75,7 @@ export default function Features() {
   };
 
   return (
-    <section className="bg-[#101010] relative overflow-hidden py-24 font-mono md:py-32">
+    <section className="bg-background dark:bg-[#101010] relative overflow-hidden py-24 font-mono md:py-32">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[24px_24px]"></div>
 

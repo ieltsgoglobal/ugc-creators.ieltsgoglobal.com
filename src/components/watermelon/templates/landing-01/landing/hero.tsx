@@ -3,7 +3,7 @@ import Container from './container';
 import Heading from './heading';
 import SubHeading from './subheading';
 import { motion, type Variants, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import BgFrame from './bg-frame';
 
@@ -104,10 +104,10 @@ export default function Hero() {
       />
 
       {/* Decorative Technical Borders */}
-      <div className="absolute top-24 right-0 left-0 hidden h-px bg-white/5 lg:block" />
-      <div className="absolute right-0 bottom-24 left-0 hidden h-px bg-white/5 lg:block" />
-      <div className="absolute top-0 bottom-0 left-8 hidden w-px bg-white/5 md:left-16 lg:block" />
-      <div className="absolute top-0 right-8 bottom-0 hidden w-px bg-white/5 md:right-16 lg:block" />
+      <div className="absolute top-24 right-0 left-0 hidden h-px bg-foreground/5 lg:block" />
+      <div className="absolute right-0 bottom-24 left-0 hidden h-px bg-foreground/5 lg:block" />
+      <div className="absolute top-0 bottom-0 left-8 hidden w-px bg-foreground/5 md:left-16 lg:block" />
+      <div className="absolute top-0 right-8 bottom-0 hidden w-px bg-foreground/5 md:right-16 lg:block" />
 
       {/* Crosshairs at intersections */}
       <div className="absolute top-24 left-8 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 md:left-16 lg:block">
@@ -115,23 +115,23 @@ export default function Hero() {
         <div className="bg-primary/50 absolute top-0 bottom-0 left-1/2 w-px" />
       </div>
       <div className="absolute top-24 right-8 hidden h-4 w-4 translate-x-1/2 -translate-y-1/2 md:right-16 lg:block">
-        <div className="absolute top-1/2 right-0 left-0 h-px bg-white/20" />
-        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-white/20" />
+        <div className="absolute top-1/2 right-0 left-0 h-px bg-foreground/20" />
+        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/20" />
       </div>
       <div className="absolute bottom-24 left-8 hidden h-4 w-4 -translate-x-1/2 translate-y-1/2 md:left-16 lg:block">
-        <div className="absolute top-1/2 right-0 left-0 h-px bg-white/20" />
-        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-white/20" />
+        <div className="absolute top-1/2 right-0 left-0 h-px bg-foreground/20" />
+        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/20" />
       </div>
       <div className="absolute right-8 bottom-24 hidden h-4 w-4 translate-x-1/2 translate-y-1/2 md:right-16 lg:block">
-        <div className="absolute top-1/2 right-0 left-0 h-px bg-white/20" />
-        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-white/20" />
+        <div className="absolute top-1/2 right-0 left-0 h-px bg-foreground/20" />
+        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/20" />
       </div>
 
       {/* Abstract Background Concentric Circles (Left Edge) */}
-      <div className="pointer-events-none absolute top-1/2 left-0 flex h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/5 opacity-30">
-        <div className="flex h-[600px] w-[600px] items-center justify-center rounded-full border border-dashed border-white/10">
-          <div className="flex h-[400px] w-[400px] items-center justify-center rounded-full border border-white/5">
-            <div className="h-[200px] w-[200px] rounded-full border border-dashed border-white/5" />
+      <div className="pointer-events-none absolute top-1/2 left-0 flex h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-foreground/5 opacity-30">
+        <div className="flex h-[600px] w-[600px] items-center justify-center rounded-full border border-dashed border-foreground/10">
+          <div className="flex h-[400px] w-[400px] items-center justify-center rounded-full border border-foreground/5">
+            <div className="h-[200px] w-[200px] rounded-full border border-dashed border-foreground/5" />
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ export default function Hero() {
           {/* Badge */}
           <motion.div
             variants={itemVariants}
-            className="text-primary mb-10 inline-flex items-center gap-2 border border-white/10 bg-white/3 px-4 py-1.5 text-xs font-bold tracking-widest uppercase backdrop-blur-sm"
+            className="text-primary mb-10 inline-flex items-center gap-2 border border-foreground/10 bg-foreground/3 px-4 py-1.5 text-xs font-bold tracking-widest uppercase backdrop-blur-sm"
           >
             Open Source &mdash; Free Forever
           </motion.div>
@@ -206,7 +206,7 @@ export default function Hero() {
             className="flex flex-col gap-4 sm:flex-row"
           >
             <Link
-              to="/home"
+              href="/home"
               className="group text-background bg-primary hover:bg-primary/90 inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold transition-all active:scale-[0.97]"
             >
               Browse Components
@@ -216,7 +216,7 @@ export default function Hero() {
               href="https://github.com/WatermelonCorp/watermelon-platform"
               target="_blank"
               rel="noreferrer"
-              className="text-foreground inline-flex items-center justify-center border border-white/10 px-8 py-3 text-sm font-bold transition-all hover:bg-white/5 active:scale-[0.97]"
+              className="text-foreground inline-flex items-center justify-center border border-foreground/10 px-8 py-3 text-sm font-bold transition-all hover:bg-foreground/5 active:scale-[0.97]"
             >
               Star on GitHub
             </a>
@@ -227,10 +227,10 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-16 flex flex-col items-center gap-4"
           >
-            <div className="flex items-center gap-3 font-mono text-xs tracking-widest text-white/40 uppercase">
-              <span className="h-px w-8 bg-white/10" />
+            <div className="flex items-center gap-3 font-mono text-xs tracking-widest text-foreground/40 uppercase">
+              <span className="h-px w-8 bg-foreground/10" />
               Trusted by developers worldwide
-              <span className="h-px w-8 bg-white/10" />
+              <span className="h-px w-8 bg-foreground/10" />
             </div>
             <motion.div
               className="flex flex-wrap justify-center items-center gap-4 sm:gap-6"
@@ -257,7 +257,7 @@ export default function Hero() {
                         transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
                       },
                     }}
-                    className="border border-white/5 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/60 uppercase"
+                    className="border border-foreground/5 bg-foreground/2 px-4 py-2 text-xs font-bold tracking-wider text-foreground/60 uppercase"
                   >
                     {stat}
                   </motion.div>
@@ -307,7 +307,7 @@ export default function Hero() {
             >
               <BgFrame
                 imageUrl={url}
-                className="bg-background w-full border-white/10 shadow-2xl"
+                className="bg-background w-full border-foreground/10 shadow-2xl"
               />
             </motion.div>
           ))}

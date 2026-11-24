@@ -5,12 +5,12 @@ import Container from "./container";
 
 function TemplateCard({ variants, children }: { variants: Variants; children: React.ReactNode }) {
   return (
-    <motion.div variants={variants} className="w-full h-[700px] md:h-[1000px] border border-white/10 bg-black/40 backdrop-blur-md relative group cursor-crosshair hover:bg-white/2 transition-colors duration-300">
+    <motion.div variants={variants} className="w-full h-[700px] md:h-[1000px] border border-foreground/10 bg-foreground/5 dark:bg-black/40 backdrop-blur-md relative group cursor-crosshair hover:bg-foreground/2 transition-colors duration-300">
       {/* Corner Accents */}
-      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/40"></div>
-      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/40"></div>
-      <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/40"></div>
-      <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/40"></div>
+      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-foreground/40"></div>
+      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-foreground/40"></div>
+      <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-foreground/40"></div>
+      <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-foreground/40"></div>
 
       {children}
     </motion.div>
@@ -21,15 +21,15 @@ function BrowserMockup({ children, url }: { children: React.ReactNode; url: stri
   return (
     <div className="w-full h-full flex flex-col">
       {/* Tech Header */}
-      <div className="h-12 border-b border-white/10 bg-white/5 flex items-center px-4 md:px-6 gap-2 md:gap-4 w-full">
+      <div className="h-12 border-b border-foreground/10 bg-foreground/5 flex items-center px-4 md:px-6 gap-2 md:gap-4 w-full">
         {/* Techy "traffic lights" */}
         <div className="flex gap-2">
-          <div className="w-2 h-2 bg-white/20 group-hover:bg-destructive/80 transition-colors" />
-          <div className="w-2 h-2 bg-white/20 group-hover:bg-yellow-500/80 transition-colors" />
-          <div className="w-2 h-2 bg-white/20 group-hover:bg-primary/80 transition-colors" />
+          <div className="w-2 h-2 bg-foreground/20 group-hover:bg-destructive/80 transition-colors" />
+          <div className="w-2 h-2 bg-foreground/20 group-hover:bg-yellow-500/80 transition-colors" />
+          <div className="w-2 h-2 bg-foreground/20 group-hover:bg-primary/80 transition-colors" />
         </div>
         <div className="ml-2 md:ml-4 flex-1 flex justify-center min-w-0">
-            <div className="px-2 md:px-4 py-1 text-[10px] md:text-xs border border-white/10 text-white/50 font-mono w-full max-w-[280px] md:w-76 text-center tracking-widest uppercase truncate">
+            <div className="px-2 md:px-4 py-1 text-[10px] md:text-xs border border-foreground/10 text-foreground/50 font-mono w-full max-w-[280px] md:w-76 text-center tracking-widest uppercase truncate">
               {url}
             </div>
         </div>
@@ -88,9 +88,9 @@ export default function TemplateBento() {
   };
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-background dark:bg-[#101010] font-mono">
       {/* Decorative Technical Borders */}
-      <div className="hidden lg:block absolute top-0 left-0 w-full border-t border-white/5" />
+      <div className="hidden lg:block absolute top-0 left-0 w-full border-t border-foreground/5" />
 
       <Container className="relative z-10 mx-auto">
         <motion.div
@@ -109,7 +109,7 @@ export default function TemplateBento() {
               Production Ready <span className="text-primary">Templates</span>
             </Heading>
           </motion.div>
-          <motion.p variants={itemVariants} className="mt-6 text-sm text-white/50 text-pretty max-w-2xl font-mono uppercase tracking-widest leading-relaxed">
+          <motion.p variants={itemVariants} className="mt-6 text-sm text-foreground/50 text-pretty max-w-2xl font-mono uppercase tracking-widest leading-relaxed">
             Don&apos;t start from scratch.<br className="block md:hidden mt-2" /> Use our comprehensive page templates.
           </motion.p>
         </motion.div>
@@ -122,7 +122,7 @@ export default function TemplateBento() {
         >
           <TemplateCard variants={itemVariants}>
             <BrowserMockup url="[ WATERMELON-UI.COM/TEMPLATES ]">
-              <div className="flex-1 w-full border border-white/20 flex flex-col items-center justify-center bg-black relative z-10 overflow-hidden group-hover:border-primary/50 transition-colors duration-500">
+              <div className="flex-1 w-full border border-foreground/20 flex flex-col items-center justify-center bg-muted dark:bg-black relative z-10 overflow-hidden group-hover:border-primary/50 transition-colors duration-500">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentIndex}
@@ -138,13 +138,13 @@ export default function TemplateBento() {
               </div>
               
               <div className="mt-2 md:mt-4 relative z-10 w-full overflow-hidden">
-                <p className="text-xs md:text-sm font-bold text-white/40 tracking-[0.2em] uppercase flex flex-wrap justify-center gap-x-3 md:gap-x-6 gap-y-2">
+                <p className="text-xs md:text-sm font-bold text-foreground/40 tracking-[0.2em] uppercase flex flex-wrap justify-center gap-x-3 md:gap-x-6 gap-y-2">
                   <span className="hover:text-primary transition-colors cursor-pointer">HERO</span>
-                  <span className="text-white/20">{"//"}</span>
+                  <span className="text-foreground/20">{"//"}</span>
                   <span className="hover:text-primary transition-colors cursor-pointer">FOOTER</span>
-                  <span className="text-white/20">{"//"}</span>
+                  <span className="text-foreground/20">{"//"}</span>
                   <span className="hover:text-primary transition-colors cursor-pointer">LANDING PAGE</span>
-                  <span className="text-white/20">{"//"}</span>
+                  <span className="text-foreground/20">{"//"}</span>
                   <span className="hover:text-primary transition-colors cursor-pointer">DASHBOARD</span>
                 </p>
               </div>

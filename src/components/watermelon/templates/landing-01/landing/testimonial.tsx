@@ -170,12 +170,12 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
   const PlatformIcon = platform.icon;
 
   return (
-    <div className="group relative w-[350px] shrink-0 cursor-crosshair border border-white/10 bg-black/40 backdrop-blur-md transition-colors duration-300 md:w-[450px]">
+    <div className="group relative w-[350px] shrink-0 cursor-crosshair border border-foreground/10 bg-foreground/5 dark:bg-black/40 backdrop-blur-md transition-colors duration-300 md:w-[450px]">
       {/* Corner Accents */}
-      <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-white/40" />
-      <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-white/40" />
-      <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-white/40" />
-      <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-white/40" />
+      <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-foreground/40" />
+      <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-foreground/40" />
+      <div className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-foreground/40" />
+      <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-foreground/40" />
 
       <div className="flex h-full w-full flex-col p-8 whitespace-normal">
         {/* Platform Badge + X Icon */}
@@ -196,7 +196,7 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
             href={t.profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/20 transition-colors duration-200 hover:text-white/60"
+            className="text-foreground/20 transition-colors duration-200 hover:text-foreground/60"
             aria-label={`Visit ${t.author}'s X profile`}
           >
             <XIcon className="h-4 w-4" />
@@ -204,13 +204,13 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
         </div>
 
         {/* Testimonial Content */}
-        <p className="group-hover:text-primary mb-8 grow font-mono text-sm leading-relaxed tracking-wide text-white/80 transition-colors duration-300">
+        <p className="group-hover:text-primary mb-8 grow font-mono text-sm leading-relaxed tracking-wide text-foreground/80 transition-colors duration-300">
           &quot;{t.content}&quot;
         </p>
 
         {/* Author Info */}
-        <div className="mt-auto flex items-center gap-3 border-t border-white/5 pt-6">
-          <div className="group-hover:border-primary relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-white/20 transition-colors duration-300">
+        <div className="mt-auto flex items-center gap-3 border-t border-foreground/5 pt-6">
+          <div className="group-hover:border-primary relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-foreground/20 transition-colors duration-300">
             <img
               src={t.avatar}
               alt={t.author}
@@ -224,17 +224,17 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
               }}
             />
             <div
-              className="text-primary absolute inset-0 hidden items-center justify-center bg-white/5 text-xs font-bold"
+              className="text-primary absolute inset-0 hidden items-center justify-center bg-foreground/5 text-xs font-bold"
               style={{ display: 'none' }}
             >
               {t.author.charAt(0).toUpperCase()}
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-xs font-bold tracking-widest text-white/90 uppercase">
+            <span className="text-xs font-bold tracking-widest text-foreground/90 uppercase">
               {t.author}
             </span>
-            <span className="mt-0.5 text-[10px] tracking-widest text-white/40">
+            <span className="mt-0.5 text-[10px] tracking-widest text-foreground/40">
               {t.handle}
             </span>
           </div>
@@ -269,9 +269,9 @@ export default function Testimonial() {
   const marqueeItems = [...testimonials, ...testimonials];
 
   return (
-    <section className="bg-[#101010] relative overflow-hidden py-24 md:py-32 font-mono">
+    <section className="bg-background dark:bg-[#101010] relative overflow-hidden py-24 md:py-32 font-mono">
       {/* Decorative top border */}
-      <div className="absolute top-0 left-0 hidden w-full border-t border-white/5 lg:block" />
+      <div className="absolute top-0 left-0 hidden w-full border-t border-foreground/5 lg:block" />
 
       <Container className="relative z-10 mx-auto">
         <motion.div
@@ -299,7 +299,7 @@ export default function Testimonial() {
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className="mt-6 max-w-2xl font-mono text-sm leading-relaxed tracking-widest text-pretty text-white/50 uppercase"
+            className="mt-6 max-w-2xl font-mono text-sm leading-relaxed tracking-widest text-pretty text-foreground/50 uppercase"
           >
             Don&apos;t just take our word for it.
             <br className="mt-2 block md:hidden" /> Real feedback from the

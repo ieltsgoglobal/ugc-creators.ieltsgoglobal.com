@@ -172,14 +172,14 @@ export function ThemingComponent() {
             </span>
           </div>
 
-          <div className="relative mt-2 h-px w-full bg-white/5">
+          <div className="relative mt-2 h-px w-full bg-foreground/5">
             <motion.div
               className="bg-primary text-primary absolute top-0 left-0 h-full shadow-[0_0_8px_currentColor]"
               initial={{ width: 0 }}
               whileInView={{ width: '45%' }}
               transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
             />
-            <div className="absolute top-[-3px] left-[45%] h-[7px] w-px bg-white/20" />
+            <div className="absolute top-[-3px] left-[45%] h-[7px] w-px bg-foreground/20" />
           </div>
         </div>
 
@@ -189,7 +189,7 @@ export function ThemingComponent() {
             {Array.from({ length: 26 }).map((_, i) => (
               <motion.div
                 key={i}
-                className={`h-[22px] w-1.5 rounded-[2px] ${i < 12 ? 'bg-primary text-primary shadow-[0_0_8px_currentColor]' : 'bg-white/10'}`}
+                className={`h-[22px] w-1.5 rounded-[2px] ${i < 12 ? 'bg-primary text-primary shadow-[0_0_8px_currentColor]' : 'bg-foreground/10'}`}
                 initial={{ opacity: 0, scaleY: 0 }}
                 whileInView={{ opacity: 1, scaleY: i < 12 ? 1 : 0.6 }}
                 transition={{
@@ -291,7 +291,7 @@ export function ProductionReadyComponent() {
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="font-mono text-[9px] tracking-widest text-white/40 uppercase">
+            <span className="font-mono text-[9px] tracking-widest text-foreground/40 uppercase">
               Sys.Ready
             </span>
           </div>
@@ -304,7 +304,7 @@ export function ProductionReadyComponent() {
               return (
                 <motion.div
                   key={i}
-                  className={`h-3 w-3 rounded-[1px] ${isActive ? 'bg-primary/80 text-primary drop-shadow-[0_0_4px_currentColor]' : 'bg-white/5'}`}
+                  className={`h-3 w-3 rounded-[1px] ${isActive ? 'bg-primary/80 text-primary drop-shadow-[0_0_4px_currentColor]' : 'bg-foreground/5'}`}
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: i * 0.03 }}
@@ -313,7 +313,7 @@ export function ProductionReadyComponent() {
             })}
           </div>
 
-          <div className="mt-2 h-px w-full bg-white/10" />
+          <div className="mt-2 h-px w-full bg-foreground/10" />
           <motion.div
             className="bg-primary text-primary h-px drop-shadow-[0_0_4px_currentColor]"
             initial={{ width: 0 }}

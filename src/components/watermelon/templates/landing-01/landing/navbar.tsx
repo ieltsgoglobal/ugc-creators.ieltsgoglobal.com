@@ -1,8 +1,29 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 import { GithubIcon, NewTwitterIcon, Menu01Icon, Cancel01Icon } from "hugeicons-react";
 import { cn } from "@/lib/utils";
 import LogoIcon from "@/assets/logo-icon";
+
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+
+  return (
+    <Button
+      type="button"
+      variant="outline"
+      size="icon-lg"
+      aria-label="Toggle light or dark theme"
+      disabled={!resolvedTheme}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+    >
+      <Sun aria-hidden="true" className="hidden dark:block" />
+      <Moon aria-hidden="true" className="dark:hidden" />
+    </Button>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,7 +48,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <div className="w-8 h-8 flex items-center justify-center relative transition-transform duration-300 group-hover:scale-105">
              <LogoIcon className="w-full h-full text-primary" />
           </div>
@@ -39,20 +60,22 @@ export default function Navbar() {
         {/* Right side */}
         <div className="hidden md:flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <a href="https://github.com/WatermelonCorp/watermelon-platform" target="_blank" rel="noreferrer" className="flex items-center justify-center h-10 w-10 border border-white/10 bg-transparent text-white/50 hover:text-white hover:bg-white/5 transition-colors">
+            <a href="https://github.com/WatermelonCorp/watermelon-platform" target="_blank" rel="noreferrer" className="flex items-center justify-center h-10 w-10 border border-foreground/10 bg-transparent text-foreground/50 hover:text-foreground hover:bg-foreground/5 transition-colors">
               <GithubIcon className="w-4 h-4" />
             </a>
-            <a href="https://x.com/watermelonui" target="_blank" rel="noreferrer" className="flex items-center justify-center h-10 w-10 border border-white/10 bg-transparent text-white/50 hover:text-white hover:bg-white/5 transition-colors">
+            <a href="https://x.com/watermelonui" target="_blank" rel="noreferrer" className="flex items-center justify-center h-10 w-10 border border-foreground/10 bg-transparent text-foreground/50 hover:text-foreground hover:bg-foreground/5 transition-colors">
               <NewTwitterIcon className="w-4 h-4" />
             </a>
           </div>
-          <Link to="/home" className="flex items-center h-10 bg-primary text-background font-mono font-bold tracking-widest uppercase px-6 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96]">
+          <ThemeToggle />
+          <Link href="/home" className="flex items-center h-10 bg-primary text-background font-mono font-bold tracking-widest uppercase px-6 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96]">
             Get Started
           </Link>
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex md:hidden items-center gap-4">
+          <ThemeToggle />
           <button 
             className="text-foreground p-1"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -70,7 +93,7 @@ export default function Navbar() {
             <a href="https://github.com/WatermelonCorp/watermelon-platform" className="text-muted-foreground hover:text-foreground"><GithubIcon className="w-6 h-6" /></a>
             <a href="https://x.com/watermelonui" className="text-muted-foreground hover:text-foreground"><NewTwitterIcon className="w-6 h-6" /></a>
           </div>
-          <Link to="/home" className="w-full text-center bg-primary text-background font-mono font-bold tracking-widest uppercase px-4 py-4 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96] mt-2">
+          <Link href="/home" className="w-full text-center bg-primary text-background font-mono font-bold tracking-widest uppercase px-4 py-4 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96] mt-2">
             Get Started
           </Link>
         </div>

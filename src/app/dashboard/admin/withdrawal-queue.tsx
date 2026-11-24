@@ -14,6 +14,8 @@ export async function WithdrawalQueue() {
     status: true,
     amountPaise: true,
     createdAt: true,
+    payoutMethod: true,
+    payoutDestination: true,
     user: { select: { name: true } },
   } as const;
   const [pending, recent] = await Promise.all([
@@ -37,6 +39,13 @@ export async function WithdrawalQueue() {
                   <p className="font-mono text-lg font-semibold">{amount}</p>
                   <p className="wrap-break-word text-sm">{request.user.name}</p>
                   <p className="mt-1 text-xs text-muted-foreground">Requested {formatSubmissionDate(request.createdAt)}</p>
+                  {request.status === "PENDING" && (
+                    <p className="mt-2 wrap-break-word text-sm text-muted-foreground">
+                      {request.payoutDestination
+                        ? `${request.payoutMethod === "PAYPAL" ? "PayPal" : "UPI"} · ${request.payoutDestination}`
+                        : "Payout details not recorded"}
+                    </p>
+                  )}
                 </div>
                 {request.status === "PENDING" ? (
                   <WithdrawalControls id={request.id} amount={amount} />

@@ -11,6 +11,7 @@ type WithdrawalResult =
   | { message: string; nextRequestId: string };
 
 class InsufficientBalanceError extends Error {}
+class PayoutMethodChangedError extends Error {}
 
 export async function requestWithdrawal(
   _previous: WithdrawalResult | null,
@@ -19,6 +20,7 @@ export async function requestWithdrawal(
   const user = await getCreatorAccount();
   const amount = formData.get("amount");
   const requestId = formData.get("requestId");
+  const payoutVersion = formData.get("payoutVersion");
   const parts = typeof amount === "string" ? /^(\d{1,8})(?:\.(\d{1,2}))?$/.exec(amount.trim()) : null;
 
   if (!parts || typeof requestId !== "string" || !/^[a-f0-9-]{36}$/i.test(requestId)) {
@@ -39,6 +41,15 @@ export async function requestWithdrawal(
         data: { ...requestKey, amountPaise },
         select: { id: true },
       });
+      const payout = await transaction.creatorWallet.findUnique({ where: { userId: user.id } });
+      if (!payout || payout.updatedAt.toISOString() !== payoutVersion) throw new PayoutMethodChangedError();
+      await transaction.creatorWithdrawalRequest.update({
+        where: { id: withdrawal.id },
+        data: {
+          payoutMethod: payout.payoutMethod,
+          payoutDestination: payout.payoutDestination,
+        },
+      });
       const balance = await transaction.creatorWalletTransaction.aggregate({
         where: { userId: user.id },
         _sum: { amountPaise: true },
@@ -56,6 +67,10 @@ export async function requestWithdrawal(
       });
     });
   } catch (error) {
+    if (error instanceof PayoutMethodChangedError) {
+      revalidatePath("/dashboard/wallet");
+      return { error: "Check your saved payout method before requesting a withdrawal." };
+    }
     if (error instanceof InsufficientBalanceError) {
       return { error: "Your wallet does not have enough available balance." };
     }

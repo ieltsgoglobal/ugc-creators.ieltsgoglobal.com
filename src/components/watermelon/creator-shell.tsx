@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ClipboardList, LayoutDashboard, PanelLeft, Share2, ShieldCheck, UserRound, Wallet, X } from "lucide-react";
+import { BookOpen, CircleHelp, ClipboardList, LayoutDashboard, PanelLeft, Share2, ShieldCheck, UserRound, Wallet, X } from "lucide-react";
 import { Dialog } from "radix-ui";
 import LogoIcon from "@/assets/logo-icon";
 import { cn } from "@/lib/utils";
@@ -15,6 +15,8 @@ const navigation = [
   { href: "/dashboard/profile", label: "Profile", icon: UserRound },
   { href: "/dashboard/referrals", label: "Referrals", icon: Share2 },
   { href: "/dashboard/wallet", label: "Wallet", icon: Wallet },
+  { href: "/dashboard/creator-guide", label: "Creator guide", icon: BookOpen },
+  { href: "/dashboard/faq", label: "FAQ", icon: CircleHelp },
   { href: "/dashboard/admin", label: "Admin", icon: ShieldCheck },
 ];
 

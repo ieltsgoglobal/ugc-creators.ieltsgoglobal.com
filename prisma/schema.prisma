@@ -126,5 +126,21 @@ model CreatorReferral {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  subscriptions Subscription[]
+
   @@map("creator_referrals")
+}
+
+model Subscription {
+  id                String          @id @default(cuid())
+
+  creatorReferralId String
+  creatorReferral   CreatorReferral @relation(fields: [creatorReferralId], references: [id], onDelete: Restrict)
+
+  externalReference String          @unique
+  subscribedAt      DateTime
+  createdAt         DateTime        @default(now())
+
+  @@index([creatorReferralId, subscribedAt])
+  @@map("subscriptions")
 }

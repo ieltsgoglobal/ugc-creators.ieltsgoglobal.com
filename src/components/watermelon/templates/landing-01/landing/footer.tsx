@@ -1,9 +1,7 @@
-import {
-  ArrowUpRight01Icon,
-  NewTwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-} from 'hugeicons-react';
+import { ArrowUpRight01Icon } from 'hugeicons-react';
+import { Globe } from 'lucide-react';
+import { FaInstagram } from 'react-icons/fa';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import LogoIcon from '@/assets/logo-icon';
 
@@ -27,7 +25,7 @@ function FooterLinkColumn({ title, children }: { title: string; children: React.
   return (
     <div className="flex flex-col gap-5">
       <div className="text-primary mb-2 flex gap-2 font-mono text-xs tracking-widest">
-        <span className="opacity-70">{'//'}</span> {title}
+        {title}
       </div>
       {children}
     </div>
@@ -36,19 +34,21 @@ function FooterLinkColumn({ title, children }: { title: string; children: React.
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} className="text-sm text-foreground/50 transition-colors hover:text-foreground">
+    <Link href={href} className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring">
       {children}
-    </a>
+    </Link>
   );
 }
 
-function SocialLink({ href, icon: Icon }: { href: string; icon: React.ElementType }) {
+function SocialLink({ href, label, icon: Icon }: { href: string; label: string; icon: React.ElementType }) {
   return (
     <a
       href={href}
+      aria-label={label}
+      title={label}
       className="flex h-8 w-8 items-center justify-center border border-foreground/10 bg-foreground/2 text-foreground/50 transition-all hover:border-foreground/30 hover:text-foreground"
     >
-      <Icon className="h-4 w-4" />
+      <Icon aria-hidden="true" className="h-4 w-4" />
     </a>
   );
 }
@@ -66,7 +66,7 @@ export default function Footer() {
           {/* Left Side: Brand & Newsletter (span 5) */}
           <div className="flex flex-col items-start pr-0 lg:col-span-5 lg:pr-8">
             <div className="text-primary mb-6 flex items-center gap-2 font-mono text-xs tracking-widest">
-              <span className="opacity-70">{'//'}</span> IELTS GOGLOBAL
+              IELTS GOGLOBAL
             </div>
             <h3 className="mb-6 font-sans text-3xl tracking-tight text-balance md:text-5xl">
               Make IELTS content <br className="hidden lg:block" /> in your own voice
@@ -85,23 +85,30 @@ export default function Footer() {
 
           {/* Right Side: Links (span 7) */}
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:col-span-7 lg:pl-8">
-            <FooterLinkColumn title="PRODUCT">
-              <FooterLink href="/animated-components">Animated</FooterLink>
-              <FooterLink href="/components">Components</FooterLink>
-              <FooterLink href="/blocks">Blocks</FooterLink>
-              <FooterLink href="/dashboard">Dashboard</FooterLink>
+            <FooterLinkColumn title="PROGRAM">
+              <FooterLink href="/">Home</FooterLink>
+              <FooterLink href="/auth">Sign in</FooterLink>
+              <FooterLink href="/onboarding">Apply to join</FooterLink>
             </FooterLinkColumn>
 
-            <FooterLinkColumn title="COMMUNITY">
-              <FooterLink href="">Discord</FooterLink>
-              <FooterLink href="https://github.com/WatermelonCorp/watermelon-platform">GitHub</FooterLink>
-              <FooterLink href="https://x.com/watermelonui">X (Twitter)</FooterLink>
+            <FooterLinkColumn title="DASHBOARD">
+              <FooterLink href="/dashboard">Overview</FooterLink>
+              <FooterLink href="/dashboard/application">Application</FooterLink>
+              <FooterLink href="/dashboard/profile">Profile</FooterLink>
+              <FooterLink href="/dashboard/referrals">Referrals</FooterLink>
+              <FooterLink href="/dashboard/wallet">Wallet</FooterLink>
             </FooterLinkColumn>
 
-            <FooterLinkColumn title="COMPANY">
-              <FooterLink href="/terms">Terms</FooterLink>
-              <FooterLink href="/privacy">Privacy</FooterLink>
-              <FooterLink href="/copyright">Copyright</FooterLink>
+            <FooterLinkColumn title="CREATOR HELP">
+              <FooterLink href="/dashboard/creator-guide">Creator Guide</FooterLink>
+              <FooterLink href="/dashboard/faq">FAQ</FooterLink>
+              <FooterLink href="https://ieltsgoglobal.com/">Main website</FooterLink>
+              <FooterLink href="https://www.instagram.com/ieltsgoglobal/">Instagram</FooterLink>
+            </FooterLinkColumn>
+
+            <FooterLinkColumn title="POLICIES">
+              <FooterLink href="/privacy">Privacy Policy</FooterLink>
+              <FooterLink href="/terms">Terms &amp; Conditions</FooterLink>
             </FooterLinkColumn>
           </div>
 
@@ -167,24 +174,15 @@ export default function Footer() {
               <span>&copy; 2026 IELTS GoGlobal.</span>
               <span>All rights reserved.</span>
             </div>
-            <div className="flex gap-4 md:gap-6">
-              <a href="#" className="transition-colors hover:text-foreground">
-                Privacy Policy
-              </a>
-              <a href="#" className="transition-colors hover:text-foreground">
-                Terms of Service
-              </a>
-            </div>
           </div>
 
           <div className="flex w-full flex-col items-start gap-3 xl:w-auto xl:items-end">
             <div className="text-primary flex items-center gap-2 font-mono text-xs tracking-widest">
-              <span className="opacity-70">{'//'}</span> CONNECT
+              CONNECT
             </div>
             <div className="flex items-center gap-4">
-              <SocialLink href="https://x.com/watermelonui" icon={NewTwitterIcon} />
-              <SocialLink href="https://github.com/WatermelonCorp/watermelon-platform" icon={GithubIcon} />
-              <SocialLink href="#" icon={DiscordIcon} />
+              <SocialLink href="https://ieltsgoglobal.com/" label="IELTS GoGlobal website" icon={Globe} />
+              <SocialLink href="https://www.instagram.com/ieltsgoglobal/" label="IELTS GoGlobal on Instagram" icon={FaInstagram} />
             </div>
           </div>
         </div>

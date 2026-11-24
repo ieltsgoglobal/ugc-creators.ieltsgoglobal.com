@@ -212,14 +212,12 @@ export default function Hero() {
               Get Started
               <ArrowUpRight01Icon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <a
-              href="https://github.com/WatermelonCorp/watermelon-platform"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/auth"
               className="text-foreground inline-flex items-center justify-center border border-foreground/10 px-8 py-3 text-sm font-bold transition-all hover:bg-foreground/5 active:scale-[0.97]"
             >
-              View Template Source
-            </a>
+              Sign in
+            </Link>
           </motion.div>
 
           {/* Social proof strip */}

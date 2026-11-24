@@ -7,6 +7,7 @@ import { database } from "@/lib/database";
 import { formatSubmissionDate } from "../_lib/creator-data";
 import { approveApplication } from "./approve-application";
 import { InstagramAccounts } from "./instagram-accounts";
+import { ReferralAssignments } from "./referral-assignments";
 import { WithdrawalQueue } from "./withdrawal-queue";
 
 export const metadata: Metadata = { title: "Application Admin | IELTS GoGlobal" };
@@ -23,6 +24,9 @@ export default function AdminPage() {
       </Suspense>
       <Suspense fallback={<p role="status">Loading Instagram accounts…</p>}>
         <InstagramAccounts />
+      </Suspense>
+      <Suspense fallback={<p role="status">Loading referral links…</p>}>
+        <ReferralAssignments />
       </Suspense>
     </div>
   );

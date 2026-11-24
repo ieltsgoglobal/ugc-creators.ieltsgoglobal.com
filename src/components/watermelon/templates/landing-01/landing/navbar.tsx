@@ -51,7 +51,7 @@ export default function Navbar() {
           <div className="w-8 h-8 flex items-center justify-center relative transition-transform duration-300 group-hover:scale-105">
              <LogoIcon className="w-full h-full text-primary" />
           </div>
-          <span className="font-mono font-bold text-sm tracking-widest uppercase">Watermelon UI</span>
+          <span className="font-mono font-bold text-sm tracking-widest uppercase">IELTS GoGlobal</span>
         </Link>
 
 
@@ -67,7 +67,7 @@ export default function Navbar() {
             </a>
           </div>
           <ThemeToggle />
-          <Link href="/home" className="flex items-center h-10 bg-primary text-background font-mono font-bold tracking-widest uppercase px-6 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96]">
+          <Link href="/auth" className="flex items-center h-10 bg-primary text-background font-mono font-bold tracking-widest uppercase px-6 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96]">
             Get Started
           </Link>
         </div>
@@ -92,7 +92,7 @@ export default function Navbar() {
             <a href="https://github.com/WatermelonCorp/watermelon-platform" className="text-muted-foreground hover:text-foreground"><GithubIcon className="w-6 h-6" /></a>
             <a href="https://x.com/watermelonui" className="text-muted-foreground hover:text-foreground"><NewTwitterIcon className="w-6 h-6" /></a>
           </div>
-          <Link href="/home" className="w-full text-center bg-primary text-background font-mono font-bold tracking-widest uppercase px-4 py-4 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96] mt-2">
+          <Link href="/auth" className="w-full text-center bg-primary text-background font-mono font-bold tracking-widest uppercase px-4 py-4 text-xs hover:bg-primary/90 transition-colors active:scale-[0.96] mt-2">
             Get Started
           </Link>
         </div>

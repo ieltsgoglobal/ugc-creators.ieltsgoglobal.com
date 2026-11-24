@@ -88,7 +88,7 @@ export default function ComponentsBento() {
             className="inline-flex items-center text-xs font-bold text-primary mb-8 tracking-widest uppercase"
           >
             <span className="mr-3 opacity-70 block md:hidden">{"//"}</span>
-            STANDARD UI COMPONENTS
+            VIDEO FORMAT
             <span className="ml-3 opacity-70 hidden md:block">{"//"}</span>
           </motion.div>
           <motion.div variants={itemVariants}>
@@ -97,15 +97,15 @@ export default function ComponentsBento() {
               variant="big"
               className="text-balance text-foreground font-sans text-left md:text-right"
             >
-              Building <span className="text-primary">blocks</span>
+              Structure your <span className="text-primary">video</span>
             </Heading>
           </motion.div>
           <motion.p
             variants={itemVariants}
             className="mt-6 text-sm text-foreground/50 text-pretty max-w-lg font-mono uppercase tracking-widest leading-relaxed text-left md:text-right"
           >
-            The fundamental architecture of your next great application. Robust,
-            accessible, and highly customizable structure.
+            Open with a moment your audience knows. Show what happened,
+            then end with a punchline, a takeaway, or a question.
           </motion.p>
         </motion.div>
 
@@ -118,7 +118,7 @@ export default function ComponentsBento() {
         >
           {/* Top Left - Tabs 7 */}
           <ComponentCard
-            title="[ TABS ]"
+            title="[ HOOK ]"
             variants={itemVariants}
             className="md:col-span-1"
           >
@@ -127,7 +127,7 @@ export default function ComponentsBento() {
 
           {/* Top Right - Checkbox 16 */}
           <ComponentCard
-            title="[ CHECKBOX ]"
+            title="[ SETUP ]"
             variants={itemVariants}
             className="md:col-span-1"
           >
@@ -136,7 +136,7 @@ export default function ComponentsBento() {
 
           {/* Bottom Left - Switch 3 */}
           <ComponentCard
-            title="[ SWITCH ]"
+            title="[ PAYOFF ]"
             variants={itemVariants}
             className="md:col-span-1"
           >
@@ -145,7 +145,7 @@ export default function ComponentsBento() {
 
           {/* Bottom Right - Breadcrumb 7 */}
           <ComponentCard
-            title="[ BREADCRUMB ]"
+            title="[ NEXT STEP ]"
             variants={itemVariants}
             className="md:col-span-1"
           >

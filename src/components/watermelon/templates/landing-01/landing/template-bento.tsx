@@ -102,15 +102,15 @@ export default function TemplateBento() {
         >
           <motion.div variants={itemVariants} className="inline-flex items-center text-xs font-bold text-primary mb-8 tracking-widest uppercase">
             <span className="mr-3 opacity-70">{"//"}</span>
-            PRODUCTION TEMPLATES
+            IELTS TOPICS
           </motion.div>
           <motion.div variants={itemVariants}>
             <Heading as="h2" variant="big" className="text-balance text-foreground font-sans">
-              Production Ready <span className="text-primary">Templates</span>
+              Find your next <span className="text-primary">video topic</span>
             </Heading>
           </motion.div>
           <motion.p variants={itemVariants} className="mt-6 text-sm text-foreground/50 text-pretty max-w-2xl font-mono uppercase tracking-widest leading-relaxed">
-            Don&apos;t start from scratch.<br className="block md:hidden mt-2" /> Use our comprehensive page templates.
+            Try an exam-day POV, a before-and-after story, or a day in your prep.<br className="block md:hidden mt-2" /> Put your own spin on it.
           </motion.p>
         </motion.div>
         
@@ -139,13 +139,13 @@ export default function TemplateBento() {
               
               <div className="mt-2 md:mt-4 relative z-10 w-full overflow-hidden">
                 <p className="text-xs md:text-sm font-bold text-foreground/40 tracking-[0.2em] uppercase flex flex-wrap justify-center gap-x-3 md:gap-x-6 gap-y-2">
-                  <span className="hover:text-primary transition-colors cursor-pointer">HERO</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">POVS</span>
                   <span className="text-foreground/20">{"//"}</span>
-                  <span className="hover:text-primary transition-colors cursor-pointer">FOOTER</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">SKITS</span>
                   <span className="text-foreground/20">{"//"}</span>
-                  <span className="hover:text-primary transition-colors cursor-pointer">LANDING PAGE</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">STORIES</span>
                   <span className="text-foreground/20">{"//"}</span>
-                  <span className="hover:text-primary transition-colors cursor-pointer">DASHBOARD</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">TIPS</span>
                 </p>
               </div>
             </BrowserMockup>

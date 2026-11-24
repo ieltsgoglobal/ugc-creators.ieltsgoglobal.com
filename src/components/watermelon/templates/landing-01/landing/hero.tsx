@@ -8,10 +8,10 @@ import { useEffect, useState } from 'react';
 import BgFrame from './bg-frame';
 
 const ROTATING_WORDS = [
-  'designers',
-  'developers',
-  'builders',
-  'creators',
+  'relatable reels',
+  'IELTS skits',
+  'prep stories',
+  'learner POVs',
 ] as const;
 
 const HERO_IMAGES = Array.from({ length: 10 }).map(
@@ -149,7 +149,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-primary mb-10 inline-flex items-center gap-2 border border-foreground/10 bg-foreground/3 px-4 py-1.5 text-xs font-bold tracking-widest uppercase backdrop-blur-sm"
           >
-            Open Source &mdash; Free Forever
+            IELTS GoGlobal Creator Program
           </motion.div>
 
           {/* Main Heading — 2 lines */}
@@ -159,7 +159,7 @@ export default function Hero() {
               variant="big"
               className="text-foreground mb-2 font-sans leading-[0.95]"
             >
-              Beautiful Components
+              Make IELTS Content
             </Heading>
           </motion.div>
 
@@ -169,7 +169,7 @@ export default function Hero() {
               variant="big"
               className="mb-8 font-sans leading-[0.95]"
             >
-              <span className="text-foreground">Built for </span>
+              <span className="text-foreground">Share </span>
               <span className="relative inline-block min-w-[3ch]">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -195,8 +195,8 @@ export default function Hero() {
           {/* Subheading */}
           <motion.div variants={itemVariants}>
             <SubHeading variant="big" className="mb-12 max-w-2xl text-pretty">
-              600+ free, open-source UI components crafted for the design
-              community. Copy, paste, and ship — no strings attached.
+              Turn the IELTS experience into short videos people relate to. Share
+              your referral link and earn commission on eligible subscription sales.
             </SubHeading>
           </motion.div>
 
@@ -206,10 +206,10 @@ export default function Hero() {
             className="flex flex-col gap-4 sm:flex-row"
           >
             <Link
-              href="/home"
+              href="/auth"
               className="group text-background bg-primary hover:bg-primary/90 inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold transition-all active:scale-[0.97]"
             >
-              Browse Components
+              Get Started
               <ArrowUpRight01Icon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <a
@@ -218,7 +218,7 @@ export default function Hero() {
               rel="noreferrer"
               className="text-foreground inline-flex items-center justify-center border border-foreground/10 px-8 py-3 text-sm font-bold transition-all hover:bg-foreground/5 active:scale-[0.97]"
             >
-              Star on GitHub
+              View Template Source
             </a>
           </motion.div>
 
@@ -229,7 +229,7 @@ export default function Hero() {
           >
             <div className="flex items-center gap-3 font-mono text-xs tracking-widest text-foreground/40 uppercase">
               <span className="h-px w-8 bg-foreground/10" />
-              Trusted by developers worldwide
+              For IELTS content creators
               <span className="h-px w-8 bg-foreground/10" />
             </div>
             <motion.div
@@ -244,7 +244,7 @@ export default function Hero() {
                 },
               }}
             >
-              {['600+ Components', '100+ Animations', '100% Free'].map(
+              {['Create IELTS Content', 'Share Your Link', 'Earn on Eligible Sales'].map(
                 (stat) => (
                   <motion.div
                     key={stat}

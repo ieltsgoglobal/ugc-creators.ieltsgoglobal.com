@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Creator Guide | IELTS GoGlobal" };
 const creatorSteps = [
   { title: "Apply for the program", description: "Complete your creator application and check its status in the dashboard.", href: "/dashboard/application", linkLabel: "View application" },
   { title: "Get your referral link", description: "Once your link is assigned, copy it from Referrals and share it wherever your audience can find it.", href: "/dashboard/referrals", linkLabel: "Open referrals" },
-  { title: "Make original IELTS content", description: "Try a short speaking answer, a writing mistake and its fix, or a study routine. Give viewers one takeaway they can try and disclose your relationship when sharing your referral link." },
+  { title: "Make original IELTS content", description: "Film an exam-day POV, a skit about a speaking-test moment, a reaction, or a story from your prep. Tips and demos work too. Disclose your relationship when sharing your referral link." },
   { title: "Earn from eligible sales", description: "An eligible subscription bought through your assigned link can earn a commission. Recorded sales appear in Referrals, and credited earnings appear in Wallet." },
 ];
 
@@ -44,7 +44,7 @@ export default async function CreatorGuidePage() {
       </CreatorPanel>
       <div className="grid items-start gap-5 lg:grid-cols-2">
         <CreatorPanel title="Instagram inspiration" icon={<Play />}>
-          <p className="mb-3 text-sm leading-relaxed text-muted-foreground">Look at how other creators open a video, explain one idea, and prompt viewers to take action. Adapt the format to your own voice.</p>
+          <p className="mb-3 text-sm leading-relaxed text-muted-foreground">Look at how creators hook viewers, set up a relatable moment, and land a punchline or takeaway. Use the format as inspiration and make the story your own.</p>
           <ul className="divide-y divide-border border-y border-border">
             {inspirationProfiles.map(({ handle, url }) => (
               <li key={handle}>

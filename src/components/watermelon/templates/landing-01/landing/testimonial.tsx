@@ -1,174 +1,20 @@
+import { Clapperboard, MessageSquare } from 'lucide-react';
 import { motion, type Variants } from 'motion/react';
 import Heading from './heading';
 import Container from './container';
 
-type Platform = 'dm' | 'tweet' | 'linkedin';
-
-interface Testimonial {
-  id: number;
-  content: string;
-  author: string;
-  handle: string;
-  avatar: string;
-  platform: Platform;
-  profileUrl: string;
-}
-
-const XIcon = ({ className }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
-
-const DMIcon = ({ className }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={1.5}
-    aria-hidden="true"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-    />
-  </svg>
-);
-
-const TweetIcon = ({ className }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={1.5}
-    aria-hidden="true"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
-    />
-  </svg>
-);
-
-const platformConfig: Record<
-  Platform,
-  { label: string; icon: typeof DMIcon; color: string; bgColor: string }
-> = {
-  dm: {
-    label: 'DM',
-    icon: DMIcon,
-    color: 'text-blue-400',
-    bgColor: 'bg-blue-500/10 border-blue-500/20',
-  },
-  tweet: {
-    label: 'TWEET',
-    icon: TweetIcon,
-    color: 'text-sky-400',
-    bgColor: 'bg-sky-500/10 border-sky-500/20',
-  },
-  linkedin: {
-    label: 'LINKEDIN',
-    icon: DMIcon,
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-600/10 border-blue-600/20',
-  },
-};
-
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    content:
-      'Yo that\'s cool man, specially the footer one you killed it man.',
-    author: 'Guri',
-    handle: '@Gur__vi',
-    avatar: 'https://unavatar.io/x/Gur__vi',
-    platform: 'dm',
-    profileUrl: 'https://x.com/Gur__vi',
-  },
-  {
-    id: 2,
-    content:
-      'Overall components looks better and much more stable',
-    author: 'OrcDev',
-    handle: '@orcdev',
-    avatar: 'https://unavatar.io/x/orcdev',
-    platform: 'dm',
-    profileUrl: 'https://x.com/orcdev',
-  },
-  {
-    id: 3,
-    content:
-      'Looks good, especially Hero and Footer sections also But seem used AI pipeline here, so make them more natural. Rest seems good progress.',
-    author: 'Ajay Patel',
-    handle: '@ajaypatel_aj',
-    avatar: 'https://unavatar.io/x/ajaypatel_aj',
-    platform: 'dm',
-    profileUrl: 'https://x.com/ajaypatel_aj',
-  },
-  {
-    id: 4,
-    content:
-      'Good stuff. Looks clean only feedback I have is have more consistency across all the components / blocks.',
-    author: 'Dillion',
-    handle: '@dillionverma',
-    avatar: 'https://unavatar.io/x/dillionverma',
-    platform: 'dm',
-    profileUrl: 'https://x.com/dillionverma',
-  },
-  {
-    id: 5,
-    content:
-      'Just had a look and it looks awesome bro 🔥. Big congrats on the new update 🍉.',
-    author: 'Anand Patel',
-    handle: '@imananddesigner',
-    avatar: 'https://unavatar.io/x/imananddesigner',
-    platform: 'dm',
-    profileUrl: 'https://x.com/imananddesigner',
-  },
-  {
-    id: 6,
-    content: 'Impressive one bhai 🔥🔥',
-    author: 'Sahil',
-    handle: '@sahildotxzz',
-    avatar: 'https://unavatar.io/x/sahildotxzz',
-    platform: 'dm',
-    profileUrl: 'https://x.com/sahildotxzz',
-  },
-  {
-    id: 7,
-    content:
-      "Man, it's awesome!!!, I've just been obsessed with footers and hero sections",
-    author: 'KapishDima',
-    handle: '@kapish_dima',
-    avatar: 'https://unavatar.io/x/kapish_dima',
-    platform: 'dm',
-    profileUrl: 'https://x.com/kapish_dima',
-  },
-  {
-    id: 8,
-    content:
-      'this one of the best way to show pricing plans on mobile built by @watermelonui',
-    author: 'Ali bey',
-    handle: '@alibey_10',
-    avatar: 'https://unavatar.io/x/alibey_10',
-    platform: 'tweet',
-    profileUrl: 'https://x.com/alibey_10',
-  },
+const testimonials = [
+  { id: 1, author: "Maya", format: "Relatable reels", content: "The hardest part was picking what to film. I started with a reel about going blank in the speaking test, and suddenly I had ideas for a whole series." },
+  { id: 2, author: "Arjun", format: "IELTS skits", content: "Acting out both sides of a mock speaking test was more fun than reading tips to camera. I could make it feel like one of my own reels." },
+  { id: 3, author: "Nina", format: "Prep stories", content: "I wish I’d filmed more of my prep. The little things, like timing my first practice test or messing up a study plan, make the best stories." },
+  { id: 4, author: "Sam", format: "Learner POVs", content: "I wanted one place to copy my referral link and check what happened after I shared it. Having sales and wallet activity in the dashboard makes that easy to follow." },
+  { id: 5, author: "Riya", format: "Speaking practice", content: "I filmed what my first mock test actually sounded like, then shared what I’d do differently. That gave me a much better story than starting with a list of rules." },
+  { id: 6, author: "Leo", format: "Reaction videos", content: "My first idea was a reaction to my own practice recording. The awkward pause was the best part, so I kept it in." },
+  { id: 7, author: "Aisha", format: "Study vlogs", content: "A day-in-my-life reel let me show what prep looks like between classes. I could film it in little pieces without writing a full script." },
+  { id: 8, author: "Dev", format: "Quick demos", content: "I turned one practice question into two clips: my first answer, then what changed when I tried it again." },
 ];
 
-function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
-  const platform = platformConfig[t.platform];
-  const PlatformIcon = platform.icon;
-
+function TestimonialCard({ testimonial: t }: { testimonial: typeof testimonials[number] }) {
   return (
     <div className="group relative w-[350px] shrink-0 cursor-crosshair border border-foreground/10 bg-foreground/5 dark:bg-black/40 backdrop-blur-md transition-colors duration-300 md:w-[450px]">
       {/* Corner Accents */}
@@ -178,29 +24,12 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
       <div className="absolute right-0 bottom-0 h-2 w-2 border-r border-b border-foreground/40" />
 
       <div className="flex h-full w-full flex-col p-8 whitespace-normal">
-        {/* Platform Badge + X Icon */}
         <div className="mb-5 flex items-center justify-between">
-          <div
-            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 ${platform.bgColor}`}
-          >
-            <PlatformIcon
-              className={`h-3 w-3 ${platform.color}`}
-            />
-            <span
-              className={`text-[10px] font-bold tracking-widest ${platform.color}`}
-            >
-              {platform.label}
-            </span>
-          </div>
-          <a
-            href={t.profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground/20 transition-colors duration-200 hover:text-foreground/60"
-            aria-label={`Visit ${t.author}'s X profile`}
-          >
-            <XIcon className="h-4 w-4" />
-          </a>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/25 bg-sky-500/10 px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest text-sky-700 uppercase dark:text-sky-400">
+            <MessageSquare aria-hidden="true" className="size-3" />
+            Sample quote
+          </span>
+          <Clapperboard aria-hidden="true" className="size-4 text-foreground/30" />
         </div>
 
         {/* Testimonial Content */}
@@ -210,32 +39,15 @@ function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
 
         {/* Author Info */}
         <div className="mt-auto flex items-center gap-3 border-t border-foreground/5 pt-6">
-          <div className="group-hover:border-primary relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-foreground/20 transition-colors duration-300">
-            <img
-              src={t.avatar}
-              alt={t.author}
-              className="h-full w-full object-cover"
-              loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const fallback = target.nextElementSibling as HTMLElement;
-                if (fallback) fallback.style.display = 'flex';
-              }}
-            />
-            <div
-              className="text-primary absolute inset-0 hidden items-center justify-center bg-foreground/5 text-xs font-bold"
-              style={{ display: 'none' }}
-            >
-              {t.author.charAt(0).toUpperCase()}
-            </div>
-          </div>
+          <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-full border border-foreground/20 bg-foreground/5 font-mono text-xs font-bold text-green-700 dark:text-primary">
+            {t.author.charAt(0)}
+          </span>
           <div className="flex flex-col">
             <span className="text-xs font-bold tracking-widest text-foreground/90 uppercase">
               {t.author}
             </span>
             <span className="mt-0.5 text-[10px] tracking-widest text-foreground/40">
-              {t.handle}
+              {t.format}
             </span>
           </div>
         </div>
@@ -286,7 +98,7 @@ export default function Testimonial() {
             className="text-primary mb-8 inline-flex items-center text-xs font-bold tracking-widest uppercase"
           >
             <span className="mr-3 opacity-70">{'//'}</span>
-            COMMUNITY FEEDBACK
+            SAMPLE TESTIMONIALS
           </motion.div>
           <motion.div variants={itemVariants}>
             <Heading
@@ -294,16 +106,14 @@ export default function Testimonial() {
               variant="big"
               className="text-foreground font-sans text-balance"
             >
-              Loved by <span className="text-primary">builders</span>
+              Hear from <span className="text-primary">creators</span>
             </Heading>
           </motion.div>
           <motion.p
             variants={itemVariants}
             className="mt-6 max-w-2xl font-mono text-sm leading-relaxed tracking-widest text-pretty text-foreground/50 uppercase"
           >
-            Don&apos;t just take our word for it.
-            <br className="mt-2 block md:hidden" /> Real feedback from the
-            community.
+            Fictional examples of how IELTS creators might use the program.
           </motion.p>
         </motion.div>
       </Container>

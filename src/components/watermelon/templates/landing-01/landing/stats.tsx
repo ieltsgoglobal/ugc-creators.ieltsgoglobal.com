@@ -13,26 +13,26 @@ import { cn } from "@/lib/utils";
 const statsData = [
   {
     id: 1,
-    value: '600+',
-    label: 'Components',
+    value: '4',
+    label: 'Application steps',
     icon: <CubeIcon className="text-primary h-6 w-6" />,
   },
   {
     id: 2,
-    value: '100+',
-    label: 'Animations',
+    value: '1',
+    label: 'Referral link per creator',
     icon: <MagicWand01Icon className="text-primary h-6 w-6" />,
   },
   {
     id: 3,
-    value: '50+',
-    label: 'Sections',
+    value: '2',
+    label: 'Payout methods',
     icon: <Layout01Icon className="text-primary h-6 w-6" />,
   },
   {
     id: 4,
-    value: '10+',
-    label: 'Templates',
+    value: '1',
+    label: 'Creator dashboard',
     icon: <Copy01Icon className="text-primary h-6 w-6" />,
   },
 ];
@@ -161,7 +161,7 @@ export default function Stats() {
             className="text-primary mb-8 inline-flex items-center text-xs font-bold tracking-widest uppercase"
           >
             <span className="mr-3 opacity-70">{'//'}</span>
-            TELEMETRY DATA
+            PROGRAM AT A GLANCE
           </motion.div>
           <motion.div variants={itemVariants}>
             <Heading
@@ -169,17 +169,17 @@ export default function Stats() {
               variant="big"
               className="text-foreground font-sans text-balance"
             >
-              Everything you need <br />
-              to <span className="text-primary">ship faster </span>
+              From application <br />
+              to <span className="text-primary">your first referral</span>
             </Heading>
           </motion.div>
           <motion.p
             variants={itemVariants}
             className="mt-6 max-w-2xl font-mono text-sm tracking-widest text-pretty text-foreground/50 uppercase"
           >
-            Stop re-building the same interfaces.
-            <br className="mt-2 block md:hidden" /> Watermelon UI provides an
-            extensive catalog of pre-built blocks.
+            Apply to the creator program.
+            <br className="mt-2 block md:hidden" /> Once your link is assigned,
+            share it and track sales in your dashboard.
           </motion.p>
         </motion.div>
 

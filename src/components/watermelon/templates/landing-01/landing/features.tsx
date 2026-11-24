@@ -92,7 +92,7 @@ export default function Features() {
             className="text-primary mb-8 inline-flex items-center text-xs font-bold tracking-widest uppercase"
           >
             <span className="mr-3 opacity-70">{'//'}</span>
-            FEATURE BENTO
+            HOW IT WORKS
           </motion.div>
           <motion.div variants={itemVariants}>
             <Heading
@@ -100,7 +100,7 @@ export default function Features() {
               variant="big"
               className="text-foreground font-sans text-balance"
             >
-              Why choose <span className="text-primary">Watermelon</span>  UI?
+              How the <span className="text-primary">creator program</span> works
             </Heading>
           </motion.div>
         </motion.div>
@@ -112,13 +112,13 @@ export default function Features() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
         >
-          {/* Top Left: 100% Open Source */}
+          {/* Top Left: Apply to join */}
           <FeatureCard
             variants={itemVariants}
             className="lg:col-span-2"
             icon={CodeIcon}
-            title="100% Open Source"
-            description="Free for commercial and personal use. No strings attached, just copy, paste, and ship faster than ever."
+            title="Apply to join"
+            description="Tell us about your content and audience in a short creator application. Check your application status in the dashboard."
             descriptionClassName="max-w-sm text-pretty"
           >
             <OpenSourceComponent />
@@ -129,8 +129,8 @@ export default function Features() {
             variants={itemVariants}
             className="lg:col-span-3"
             icon={PuzzleIcon}
-            title="600+ Premium Components"
-            description="An exhaustive library of meticulously crafted UI elements, covering everything from simple buttons to complex interactive widgets."
+            title="Make original IELTS content"
+            description="Film a funny speaking-test POV, tell a story from your prep, or show a moment every IELTS learner knows."
             descriptionClassName="max-w-md text-pretty"
           >
             <PremiumComponent />
@@ -141,10 +141,10 @@ export default function Features() {
             variants={itemVariants}
             className="lg:col-span-3"
             icon={PaintBoardIcon}
-            title="Powerful Theming"
+            title="Share your referral link"
             description={
               <>
-                Tweak CSS variables just like <br className='hidden md:block lg:hidden' /> you&apos;d adjust Tailwind classes. Add your own tokens, and every component instantly inherits your brand&apos;s unique DNA.
+                Copy your assigned link <br className='hidden md:block lg:hidden' /> from the dashboard. Share it with your audience and disclose your relationship to IELTS GoGlobal.
               </>
             }
             descriptionClassName="max-w-lg text-balance"
@@ -157,8 +157,8 @@ export default function Features() {
             variants={itemVariants}
             className="lg:col-span-2"
             icon={Layout01Icon}
-            title="Production Ready"
-            description="Stop building layouts from scratch. Ship complete pages in hours, not weeks, with our production-ready templates."
+            title="Track earnings"
+            description="See recorded subscription sales in Referrals and credited commissions in Wallet."
             descriptionClassName="max-w-xs text-pretty"
           >
             <ProductionReadyComponent />

@@ -142,15 +142,15 @@ export default function AnimatedBento() {
         >
           <motion.div variants={itemVariants} className="inline-flex items-center text-xs font-bold text-primary mb-8 tracking-widest uppercase">
             <span className="mr-3 opacity-70">{"//"}</span>
-            MICRO-INTERACTIONS
+            CONTENT IDEAS
           </motion.div>
           <motion.div variants={itemVariants}>
             <Heading as="h2" variant="big" className="text-balance text-foreground font-sans">
-              Interactions that <span className="text-primary">delight</span>
+              Turn IELTS moments into <span className="text-primary">reels</span>
             </Heading>
           </motion.div>
           <motion.p variants={itemVariants} className="mt-6 text-sm text-foreground/50 text-pretty max-w-2xl font-mono uppercase tracking-widest">
-            Drop-in animated components to delight your users.<br className="block md:hidden mt-2" /> Smooth, interruptible, and highly optimized.
+            Film a reaction, act out a relatable moment, or tell a quick prep story.<br className="block md:hidden mt-2" /> A useful tip can be part of the video.
           </motion.p>
         </motion.div>
         
@@ -162,7 +162,7 @@ export default function AnimatedBento() {
         >
           {/* Top Left */}
           <FeatureCard 
-            title="[ AI AGENT ]" 
+            title="[ PLAN A REEL ]"
             variants={itemVariants} 
             className="md:col-span-1 lg:col-span-2"
             innerClassName="scale-[0.8] md:scale-[0.9] mt-6"
@@ -172,17 +172,17 @@ export default function AnimatedBento() {
           
           {/* Top Right - Square-ish */}
           <FeatureCard 
-            title="[ MORPHING BUTTON ]" 
+            title="[ CALL TO ACTION ]"
             variants={itemVariants} 
             className="md:col-span-1"
             innerClassName="scale-[0.8] mt-6"
           >
-            <MorphingButton buttonText="Notify Me" onSubmit={() => console.log('notified')} />
+            <MorphingButton buttonText="Try this tip" onSubmit={() => console.log('notified')} />
           </FeatureCard>
           
           {/* Bottom Left - Carousel */}
           <FeatureCard 
-            title="[ KNOB SLIDER ]" 
+            title="[ PACING ]"
             variants={itemVariants} 
             className="md:col-span-1"
             innerClassName="scale-[0.8] md:scale-[0.9] mt-6"
@@ -209,15 +209,15 @@ export default function AnimatedBento() {
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(163,255,18,0.1)_1px,transparent_1px)] bg-size-[12px_12px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
                
                <div className="relative z-10 flex flex-col items-center text-center">
-                 <div className="text-5xl lg:text-6xl font-bold text-foreground tracking-tighter tabular-nums mb-3 font-mono">100+</div>
-                 <div className="text-primary font-bold tracking-widest uppercase text-xs">ANIMATED</div>
+                 <div className="text-5xl lg:text-6xl font-bold text-foreground tracking-tighter tabular-nums mb-3 font-mono">01</div>
+                 <div className="text-primary font-bold tracking-widest uppercase text-xs">IDEA PER VIDEO</div>
                </div>
             </div>
           </motion.div>
           
           {/* Bottom Right - Carousel Slider */}
           <FeatureCard 
-            title="[ SLIDER ]" 
+            title="[ VISUAL INSPIRATION ]"
             variants={itemVariants} 
             className="md:col-span-1 lg:col-span-1"
             innerClassName="scale-[0.8] mt-6"

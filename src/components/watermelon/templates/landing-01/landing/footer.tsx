@@ -66,23 +66,20 @@ export default function Footer() {
           {/* Left Side: Brand & Newsletter (span 5) */}
           <div className="flex flex-col items-start pr-0 lg:col-span-5 lg:pr-8">
             <div className="text-primary mb-6 flex items-center gap-2 font-mono text-xs tracking-widest">
-              <span className="opacity-70">{'//'}</span> WATERMELON UI
+              <span className="opacity-70">{'//'}</span> IELTS GOGLOBAL
             </div>
             <h3 className="mb-6 font-sans text-3xl tracking-tight text-balance md:text-5xl">
-              Building the future <br className="hidden lg:block" /> of
-              interfaces
+              Make IELTS content <br className="hidden lg:block" /> in your own voice
             </h3>
             <p className="mb-8 max-w-md text-sm leading-relaxed text-pretty text-foreground/50">
-              Watermelon UI is the foundational layer for modern web
-              applications—beautifully designed, perfectly animated, and deeply
-              technical
+              Apply to become a creator, share your referral link, and track eligible subscription sales in your dashboard.
             </p>
 
             <a
-              href="/home"
+              href="/auth"
               className="text-background bg-primary hover:bg-primary/90 inline-flex w-fit items-center justify-center px-8 py-4 text-xs font-bold tracking-widest uppercase transition-colors active:scale-[0.96]"
             >
-              Explore Docs <ArrowUpRight01Icon className="ml-2 h-4 w-4" />
+              Get Started <ArrowUpRight01Icon className="ml-2 h-4 w-4" />
             </a>
           </div>
 
@@ -119,7 +116,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="bg-primary h-2 w-2 animate-pulse rounded-full shadow-[0_0_8px_rgba(163,255,18,0.6)]" />
               <span className="text-primary font-mono text-xs tracking-widest uppercase">
-                Built for developers
+                For IELTS creators
               </span>
             </div>
 
@@ -137,7 +134,7 @@ export default function Footer() {
             </div>
 
             <div className="text-primary font-mono text-xs tracking-widest">
-              {'[ WATERMELON UI ]'}
+              {'[ IELTS GOGLOBAL ]'}
             </div>
           </div>
         </div>
@@ -151,23 +148,23 @@ export default function Footer() {
                 <LogoIcon className="text-primary h-full w-full" />
               </div>
               <span className="font-sans text-lg font-bold tracking-tight text-foreground/90">
-                Watermelon UI
+                IELTS GoGlobal
               </span>
             </div>
 
             <div className="hidden flex-col border-l border-foreground/10 pl-8 md:flex">
               <span className="text-xs tracking-widest text-foreground/40">
-                The foundational layer for apps.
+                IELTS GoGlobal Creator Program
               </span>
               <span className="text-xs tracking-widest text-foreground/40">
-                Fast. Animated. Technical.
+                Create, share, and earn.
               </span>
             </div>
           </div>
 
           <div className="flex w-full flex-col items-start justify-between gap-4 text-xs tracking-widest text-foreground/40 uppercase md:flex-row md:items-center md:gap-16 xl:w-auto xl:justify-end">
             <div className="flex flex-col gap-1">
-              <span>&copy; 2026 Watermelon UI.</span>
+              <span>&copy; 2026 IELTS GoGlobal.</span>
               <span>All rights reserved.</span>
             </div>
             <div className="flex gap-4 md:gap-6">

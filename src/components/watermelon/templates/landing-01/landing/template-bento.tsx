@@ -17,7 +17,7 @@ function TemplateCard({ variants, children }: { variants: Variants; children: Re
   );
 }
 
-function BrowserMockup({ children, url }: { children: React.ReactNode; url: string }) {
+function BrowserMockup({ children, label }: { children: React.ReactNode; label: string }) {
   return (
     <div className="w-full h-full flex flex-col">
       {/* Tech Header */}
@@ -30,7 +30,7 @@ function BrowserMockup({ children, url }: { children: React.ReactNode; url: stri
         </div>
         <div className="ml-2 md:ml-4 flex-1 flex justify-center min-w-0">
             <div className="px-2 md:px-4 py-1 text-[10px] md:text-xs border border-foreground/10 text-foreground/50 font-mono w-full max-w-[280px] md:w-76 text-center tracking-widest uppercase truncate">
-              {url}
+              {label}
             </div>
         </div>
         {/* Right side spacer to keep center aligned */}
@@ -47,14 +47,30 @@ function BrowserMockup({ children, url }: { children: React.ReactNode; url: stri
 }
 
 const IMAGES = [
-  "https://assets.watermelon.sh/lp-hero-01.avif",
-  "https://assets.watermelon.sh/lp-footer-01.avif",
-  "https://assets.watermelon.sh/lp-hero-02.avif",
-  "https://assets.watermelon.sh/lp-footer-02.avif",
-  "https://assets.watermelon.sh/lp-hero-03.avif",
-  "https://assets.watermelon.sh/lp-footer-03.avif",
-  "https://assets.watermelon.sh/lp-hero-05.avif",
-  "https://assets.watermelon.sh/lp-hero-04.avif"
+  {
+    url: "https://images.pexels.com/photos/23224663/pexels-photo-23224663.jpeg?auto=compress&w=1440",
+    alt: "A creator filming from the living-room floor",
+  },
+  {
+    url: "https://images.pexels.com/photos/7514827/pexels-photo-7514827.jpeg?auto=compress&w=1440",
+    alt: "A creator filming a vlog with her smartphone at home",
+  },
+  {
+    url: "https://images.pexels.com/photos/6954087/pexels-photo-6954087.jpeg?auto=compress&w=1440",
+    alt: "A creator adjusting a phone tripod before recording",
+  },
+  {
+    url: "https://images.pexels.com/photos/6870421/pexels-photo-6870421.jpeg?auto=compress&w=1440",
+    alt: "A creator recording herself in a cozy room",
+  },
+  {
+    url: "https://images.pexels.com/photos/7777111/pexels-photo-7777111.jpeg?auto=compress&w=1440",
+    alt: "A creator speaking to her phone on a tripod",
+  },
+  {
+    url: "https://images.pexels.com/photos/13929770/pexels-photo-13929770.jpeg?auto=compress&w=1440",
+    alt: "A creator filming indoors beside houseplants",
+  },
 ];
 
 export default function TemplateBento() {
@@ -121,18 +137,18 @@ export default function TemplateBento() {
           viewport={{ once: true, margin: "-50px" }}
         >
           <TemplateCard variants={itemVariants}>
-            <BrowserMockup url="[ WATERMELON-UI.COM/TEMPLATES ]">
+            <BrowserMockup label="Creator inspiration">
               <div className="flex-1 w-full border border-foreground/20 flex flex-col items-center justify-center bg-muted dark:bg-black relative z-10 overflow-hidden group-hover:border-primary/50 transition-colors duration-500">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentIndex}
-                    src={IMAGES[currentIndex]}
+                    src={IMAGES[currentIndex].url}
                     initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, scale: 1.02, filter: "blur(4px)" }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="w-full h-full object-cover object-top"
-                    alt={`Template preview ${currentIndex + 1}`}
+                    className="w-full h-full object-cover object-center"
+                    alt={IMAGES[currentIndex].alt}
                   />
                 </AnimatePresence>
               </div>

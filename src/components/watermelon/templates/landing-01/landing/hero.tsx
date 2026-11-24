@@ -14,10 +14,18 @@ const ROTATING_WORDS = [
   'learner POVs',
 ] as const;
 
-const HERO_IMAGES = Array.from({ length: 10 }).map(
-  (_, i) =>
-    `https://assets.watermelon.sh/lp-hero-${(i + 1).toString().padStart(2, '0')}.avif`,
-);
+const HERO_IMAGES = [
+  { url: 'https://images.pexels.com/photos/8359961/pexels-photo-8359961.jpeg?auto=compress&w=900', alt: 'A creator recording with a smartphone at home' },
+  { url: 'https://images.pexels.com/photos/4793188/pexels-photo-4793188.jpeg?auto=compress&w=900', alt: 'A phone mounted on a tripod outdoors' },
+  { url: 'https://images.pexels.com/photos/6954087/pexels-photo-6954087.jpeg?auto=compress&w=900', alt: 'A creator adjusting her phone before filming' },
+  { url: 'https://images.pexels.com/photos/23224663/pexels-photo-23224663.jpeg?auto=compress&w=900', alt: 'A creator filming in a living room' },
+  { url: 'https://images.pexels.com/photos/7525183/pexels-photo-7525183.jpeg?auto=compress&w=900', alt: 'A creator filming a reel in her kitchen' },
+  { url: 'https://images.pexels.com/photos/8371120/pexels-photo-8371120.jpeg?auto=compress&w=900', alt: 'A creator filming herself with a phone tripod' },
+  { url: 'https://images.pexels.com/photos/6870421/pexels-photo-6870421.jpeg?auto=compress&w=900', alt: 'A creator recording a phone vlog at home' },
+  { url: 'https://images.pexels.com/photos/8359955/pexels-photo-8359955.jpeg?auto=compress&w=900', alt: 'A creator recording himself with a smartphone on a tripod' },
+  { url: 'https://images.pexels.com/photos/6954135/pexels-photo-6954135.jpeg?auto=compress&w=900', alt: 'A creator filming a tutorial with a tripod-mounted phone' },
+  { url: 'https://images.pexels.com/photos/14540962/pexels-photo-14540962.jpeg?auto=compress&w=900', alt: 'A tripod-mounted phone recording a creator at her desk' },
+];
 
 const IMAGE_POSITIONS = [
   // L4 (Highest, furthest left)
@@ -41,10 +49,10 @@ const IMAGE_POSITIONS = [
   { top: '25%', right: '15%', width: '42%', rotate: '2deg', zIndex: 4 },
 
   // Center (Front, lowest)
-  { top: '40%', left: '24%', width: '52%', rotate: '0deg', zIndex: 10 },
+  { top: '40%', left: '50%', width: '52%', translate: '-50% 0', rotate: '0deg', zIndex: 10 },
 
   // Top Center (Background Floater)
-  { top: '15%', left: '38%', width: '24%', rotate: '0deg', zIndex: 0 },
+  { top: '15%', left: '50%', width: '24%', translate: '-50% 0', rotate: '0deg', zIndex: 0 },
 ];
 
 export default function Hero() {
@@ -280,10 +288,10 @@ export default function Hero() {
             },
           }}
         >
-          {HERO_IMAGES.map((url, i) => (
+          {HERO_IMAGES.map(({ url, alt }, i) => (
             <motion.div
               key={url}
-              className="pointer-events-auto absolute shadow-2xl"
+              className="pointer-events-auto absolute max-w-44 shadow-2xl sm:max-w-68 md:max-w-[23rem]"
               style={{
                 ...IMAGE_POSITIONS[i],
                 transformOrigin: 'center center',
@@ -305,6 +313,7 @@ export default function Hero() {
             >
               <BgFrame
                 imageUrl={url}
+                alt={alt}
                 className="bg-background w-full border-foreground/10 shadow-2xl"
               />
             </motion.div>

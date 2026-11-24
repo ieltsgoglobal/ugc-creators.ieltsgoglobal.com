@@ -17,7 +17,7 @@ export default function BgFrame({ imageUrl, className, alt = "Image frame" }: Pr
       <img
         src={imageUrl}
         alt={alt}
-        className="w-full h-auto object-cover"
+        className="block aspect-[4/5] w-full object-cover"
       />
     </div>
   );

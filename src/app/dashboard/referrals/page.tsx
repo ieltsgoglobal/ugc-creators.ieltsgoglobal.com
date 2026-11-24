@@ -34,7 +34,7 @@ export default async function ReferralsPage() {
     where: { userId: account.id },
     select: {
       id: true,
-      url: true,
+      code: true,
       _count: { select: { subscriptions: true } },
       subscriptions: {
         orderBy: [{ createdAt: "desc" }, { id: "desc" }],
@@ -44,10 +44,8 @@ export default async function ReferralsPage() {
     },
   });
 
-  const referralUrl = referral ? new URL(referral.url) : null;
-  if (referral && referralUrl?.hostname === "ieltsgoglobal.com") {
-    referralUrl.searchParams.set("ref", referral.id);
-  }
+  const referralUrl = referral?.code ? new URL("https://ieltsgoglobal.com/") : null;
+  if (referralUrl && referral?.code) referralUrl.searchParams.set("ref", referral.code);
 
   const subscriptionsSold = referral?._count.subscriptions ?? 0;
   const activity = referral?.subscriptions ?? [];

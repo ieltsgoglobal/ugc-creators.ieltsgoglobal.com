@@ -6,11 +6,17 @@ export async function POST(request: Request) {
   const result = conversionSchema.safeParse(await request.json().catch(() => null));
   if (!result.success) return Response.json({ error: "Invalid conversion" }, { status: 400 });
 
-  const { referralId, externalReference, paidAmountMinor, currency } = result.data;
+  const { referralCode, externalReference, paidAmount, currency } = result.data;
+  const paidAmountMinor = Math.round(paidAmount * 100);
   const subscribedAt = new Date(result.data.subscribedAt);
+  const referral = await database.creatorReferral.findUnique({
+    where: { code: referralCode },
+    select: { id: true },
+  });
+  if (!referral) return Response.json({ error: "Unknown referral" }, { status: 404 });
   try {
     await database.subscription.create({
-      data: { creatorReferralId: referralId, externalReference, subscribedAt, paidAmountMinor, currency },
+      data: { creatorReferralId: referral.id, externalReference, subscribedAt, paidAmountMinor, currency },
     });
     return Response.json({ status: "recorded" }, { status: 201 });
   } catch (error) {
@@ -22,7 +28,7 @@ export async function POST(request: Request) {
 
     const existing = await database.subscription.findUniqueOrThrow({ where: { externalReference } });
     if (
-      existing.creatorReferralId === referralId &&
+      existing.creatorReferralId === referral.id &&
       existing.subscribedAt.getTime() === subscribedAt.getTime() &&
       existing.paidAmountMinor === paidAmountMinor &&
       existing.currency === currency

@@ -13,7 +13,7 @@ export function GET() {
     <section id="reference-fallback">
       <h1>IELTS GoGlobal Creator API</h1>
       <p><code>POST /api/v1/referrals/conversions</code> records a referred subscription sale.</p>
-      <p>Request fields: <code>referralId</code>, <code>externalReference</code>, <code>subscribedAt</code>, <code>paidAmountMinor</code>, and <code>currency</code>.</p>
+      <p>Request fields: <code>referralCode</code>, <code>externalReference</code>, <code>subscribedAt</code>, <code>paidAmount</code> in rupees, and <code>currency</code> set to <code>INR</code>.</p>
       <p><a href="/api/openapi.json">View the OpenAPI specification</a></p>
     </section>
     <div id="api-reference"></div>

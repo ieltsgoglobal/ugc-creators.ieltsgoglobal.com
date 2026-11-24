@@ -33,10 +33,10 @@ export const creatorOpenApiDocument = {
               "application/json": {
                 schema: z.toJSONSchema(conversionSchema, { io: "input", target: "draft-2020-12" }),
                 example: {
-                  referralId: "creator_referral_example",
+                  referralCode: "V1StGXR8_Z5jdHi6B-myT",
                   externalReference: "dodo:payment_example",
                   subscribedAt: "2026-11-24T12:00:00Z",
-                  paidAmountMinor: 99900,
+                  paidAmount: 999.50,
                   currency: "INR",
                 },
               },
@@ -46,7 +46,7 @@ export const creatorOpenApiDocument = {
             200: jsonResponse("Identical sale already recorded.", { status: "already_recorded" }),
             201: jsonResponse("Sale recorded.", { status: "recorded" }),
             400: jsonResponse("Invalid request body.", { error: "Invalid conversion" }),
-            404: jsonResponse("Referral ID was not found.", { error: "Unknown referral" }),
+            404: jsonResponse("Referral code was not found.", { error: "Unknown referral" }),
             409: jsonResponse("Payment reference was recorded with different details.", { error: "Payment reference already used" }),
             500: { description: "Unexpected server error. Retry with the original payload." },
           },

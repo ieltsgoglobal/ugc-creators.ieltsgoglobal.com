@@ -8,9 +8,11 @@ export async function ReferralAssignments() {
   await connection();
   const users = await database.user.findMany({
     orderBy: [{ name: "asc" }, { id: "asc" }],
-    select: { id: true, name: true, creatorReferral: { select: { url: true } } },
+    select: { id: true, name: true, creatorReferral: { select: { url: true, code: true } } },
   });
-  const creators = users.map(({ id, name, creatorReferral }) => ({ id, name, url: creatorReferral?.url ?? null }));
+  const creators = users.map(({ id, name, creatorReferral }) => ({
+    id, name, url: creatorReferral?.url ?? null, code: creatorReferral?.code ?? null,
+  }));
 
   return (
     <CreatorPanel title="Referral links" icon={<Link2 />}>

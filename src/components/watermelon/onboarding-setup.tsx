@@ -7,8 +7,7 @@ import { ChevronLeft } from "lucide-react";
 interface OnboardingSetupProps {
   title: string;
   subtitle: string;
-  step: number;
-  totalSteps: number;
+  progress: ReactNode;
   children: ReactNode;
   imageUrl: string;
   formId?: string;
@@ -19,7 +18,7 @@ interface OnboardingSetupProps {
 const SPRING = { type: "spring", stiffness: 320, damping: 30, mass: 0.7 } as const;
 
 export function OnboardingSetup({
-  title, subtitle, step, totalSteps, children, imageUrl, formId, action, onBack,
+  title, subtitle, progress, children, imageUrl, formId, action, onBack,
 }: OnboardingSetupProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -41,14 +40,7 @@ export function OnboardingSetup({
 
           {action && formId && (
             <div className="mt-auto flex flex-wrap items-center justify-between gap-4 p-5 pt-2 sm:px-8 sm:pb-8">
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <span>Step {step} of {totalSteps}</span>
-                <div aria-hidden="true" className="ml-2 flex gap-1">
-                  {Array.from({ length: totalSteps }, (_, index) => (
-                    <span key={index} className={`h-4 w-1 rounded-full transition-colors ${index < step ? "bg-[#ff6a32]" : "bg-[#E5E5ED] dark:bg-[#222]"}`} />
-                  ))}
-                </div>
-              </div>
+              {progress}
               <div className="flex flex-wrap items-center gap-2">
                 {onBack && <button type="button" onClick={onBack} className="flex h-10 items-center gap-1 rounded-full border border-border px-3 text-sm">
                   <ChevronLeft size={16} aria-hidden="true" /> Back

@@ -43,7 +43,7 @@ AI Development Guidelines
 
 # AI Agent Skills
 
-* [Watermelon component guide](WATERMELON.md) for choosing the right component and reusing its styles.
+* for choosing the right component and reusing its styles: WATERMELON.md
 * Pick UI Library: https://www.ui-skills.com/skills/emilkowalski/pick-ui-library
 * Frontend Design: https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md
 * Naming Convention: https://github.com/marcioaltoe/claude-craftkit/tree/main/plugins/architecture-design/skills/naming-conventions
@@ -74,3 +74,16 @@ AI Development Guidelines
 * Do not invoke multiple agents unless explicitly requested.
 * Stop and ask before expanding the task’s scope.
 * For complex tasks that cannot reasonably fit the budget, explain why before proceeding.
+
+
+
+# File Organization & Naming
+
+* Use feature-based architecture with strict colocation.
+* Keep feature-specific components in _components/ and logic, schemas, and types in _lib/ within the feature folder.
+* Move code to shared directories only when reused across features.
+* Use kebab-case for files and folders.
+* Use PascalCase for components and types.
+* Use camelCase for variables and functions.
+* Follow Next.js App Router naming conventions.
+* Prefer descriptive filenames and avoid unnecessary abstractions.

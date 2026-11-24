@@ -39,6 +39,7 @@ model CreatorProfile {
   payout                Boolean
   disclosure            Boolean
   submittedAt           DateTime @default(now())
+  approvedAt            DateTime?
 
   @@map("creator_application")
 }

@@ -92,7 +92,7 @@ export default function Footer() {
               <FooterLink href="/animated-components">Animated</FooterLink>
               <FooterLink href="/components">Components</FooterLink>
               <FooterLink href="/blocks">Blocks</FooterLink>
-              <FooterLink href="/dashboards">Dashboards</FooterLink>
+              <FooterLink href="/dashboard">Dashboard</FooterLink>
             </FooterLinkColumn>
 
             <FooterLinkColumn title="COMMUNITY">

@@ -8,13 +8,13 @@ import { GithubIcon, NewTwitterIcon, Menu01Icon, Cancel01Icon } from "hugeicons-
 import { cn } from "@/lib/utils";
 import LogoIcon from "@/assets/logo-icon";
 
-function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string } = {}) {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
       type="button"
-      className="flex size-10 items-center justify-center rounded-lg border border-input hover:bg-accent [&>svg]:size-4"
+      className={cn("flex size-10 items-center justify-center rounded-lg border border-input hover:bg-accent [&>svg]:size-4", className)}
       aria-label="Toggle light or dark theme"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >

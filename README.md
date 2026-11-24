@@ -76,14 +76,26 @@ AI Development Guidelines
 * For complex tasks that cannot reasonably fit the budget, explain why before proceeding.
 
 
-
 # File Organization & Naming
 
 * Use feature-based architecture with strict colocation.
-* Keep feature-specific components in _components/ and logic, schemas, and types in _lib/ within the feature folder.
+* Use _components/ for feature-specific UI components.
+* Use _lib/ for utilities, schemas, types, and business logic.
+* Use _actions/ for server actions.
+* Keep all three directories inside their respective feature folders.
 * Move code to shared directories only when reused across features.
 * Use kebab-case for files and folders.
-* Use PascalCase for components and types.
+* Use PascalCase for components, types, and classes.
 * Use camelCase for variables and functions.
-* Follow Next.js App Router naming conventions.
+* Follow Next.js App Router conventions.
 * Prefer descriptive filenames and avoid unnecessary abstractions.
+
+# Code Structure Rules
+
+* Keep files under 500 lines.
+* Allow only one export per file, except framework-required exports.
+* A file may contain multiple private functions, variables, and constants.
+* Use classes when multiple related public methods are needed.
+* Prefer functions over classes for simple logic.
+* Split files by responsibility, not by function count.
+* Keep code modular and reusable.

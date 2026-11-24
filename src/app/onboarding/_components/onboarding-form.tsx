@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import Link from "next/link";
+import { submitCreatorApplication } from "../_actions/submit-creator-application";
 import OnboardingPersonalStep from "./onboarding-personal-step";
 import OnboardingSocialStep from "./onboarding-social-step";
 import OnboardingReviewStep from "./onboarding-review-step";
@@ -13,10 +15,17 @@ import { OnboardingFieldError, OnboardingFieldLabel, OnboardingFields, Onboardin
 
 const APPLICATION_FORM_ID = "creator-application";
 
-export default function OnboardingForm({ imageUrl }: { imageUrl: string }) {
+export default function OnboardingForm({ imageUrl, fullName, email, hasApplication }: {
+  imageUrl: string;
+  fullName: string;
+  email: string;
+  hasApplication: boolean;
+}) {
   const [stepIndex, setStepIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [isComplete, setIsComplete] = useState(false);
+  const [answers, setAnswers] = useState<Record<string, string>>({ fullName, email });
+  const [isComplete, setIsComplete] = useState(hasApplication);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
   const headingRef = useRef<HTMLHeadingElement>(null);
   const hasNavigated = useRef(false);
   useEffect(() => {
@@ -30,11 +39,27 @@ export default function OnboardingForm({ imageUrl }: { imageUrl: string }) {
     setAnswers((previous) => ({ ...previous, [name]: value }));
   }
 
-  function advance(event: FormEvent<HTMLFormElement>) {
+  async function advance(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmitting) return;
+    setSubmissionError("");
     hasNavigated.current = true;
-    if (isLastStep) setIsComplete(true);
-    else setStepIndex(stepIndex + 1);
+    if (!isLastStep) {
+      setStepIndex(stepIndex + 1);
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const result = await submitCreatorApplication(answers);
+      if (result.error) {
+        setSubmissionError(result.error);
+        if ("stepIndex" in result && typeof result.stepIndex === "number") setStepIndex(result.stepIndex);
+      } else setIsComplete(true);
+    } catch {
+      setSubmissionError("Your application couldn’t be saved. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -42,17 +67,21 @@ export default function OnboardingForm({ imageUrl }: { imageUrl: string }) {
         progress={<OnboardingProgress step={stepIndex + 1} totalSteps={ONBOARDING_STEPS.length} />}
         imageUrl={imageUrl}
         formId={APPLICATION_FORM_ID}
-        action={isComplete ? undefined : isLastStep ? "Submit application" : "Continue"}
-        onBack={stepIndex > 0 ? () => setStepIndex(stepIndex - 1) : undefined}>
+        action={isComplete ? undefined : isSubmitting ? "Submitting…" : isLastStep ? "Submit application" : "Continue"}
+        isSubmitting={isSubmitting}
+        onBack={stepIndex > 0 && !isSubmitting ? () => setStepIndex(stepIndex - 1) : undefined}>
       <section key={isComplete ? "complete" : step.title}>
         <OnboardingFields>
-        <OnboardingStepHeading headingRef={headingRef} title={isComplete ? "Preview complete" : step.title} />
-        {isComplete ? <p role="status">Your application hasn’t been sent.</p> : (
+        <OnboardingStepHeading headingRef={headingRef} title={isComplete ? "Application submitted" : step.title} />
+        {isComplete ? <p role="status">We’ve received your creator application.</p> : (
           <form id={APPLICATION_FORM_ID} onSubmit={advance}>
             <OnboardingFields>
               <ActiveStep renderField={(field) => <OnboardingField key={field.name} field={field}
                 value={answers[field.name] ?? ""} onChange={(value) => updateAnswer(field.name, value)} />} />
             </OnboardingFields>
+            {submissionError && <OnboardingFieldError>
+              {submissionError} {submissionError.startsWith("Sign in") && <Link href="/auth" className="underline">Continue to sign in</Link>}
+            </OnboardingFieldError>}
           </form>
         )}
         </OnboardingFields>
@@ -82,7 +111,7 @@ function OnboardingField({ field, value, onChange }: { field: CreatorField; valu
   }
   return <div>
     <OnboardingFieldLabel htmlFor={field.name}>{label}</OnboardingFieldLabel>
-    <OnboardingSetupInput id={field.name} name={field.name} type={field.type ?? "text"} required={field.required}
+    <OnboardingSetupInput id={field.name} name={field.name} type={field.type ?? "text"} required={field.required} readOnly={field.name === "email"}
       aria-invalid={Boolean(error)} aria-describedby={error ? field.name + "-error" : undefined}
       onInvalid={(event) => setError(event.currentTarget.validationMessage)}
       autoComplete={field.autoComplete} min={field.type === "number" ? 0 : undefined}

@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String @id @default(cuid())
+  googleSub String @unique
+  email     String
+  name      String
+  creatorProfile CreatorProfile?
+}
+
+model CreatorProfile {
+  id                    String   @id @default(cuid())
+  userId                String?  @unique
+  user                  User?    @relation(fields: [userId], references: [id])
+  email                 String   @unique
+  fullName              String
+  whatsapp              String
+  country               String
+  age                   Boolean
+  instagramUsername     String
+  instagramUrl          String
+  followers             Int?
+  platforms             String?
+  niche                 String?
+  promotionalExperience Boolean?
+  language              String?
+  audienceCountry       String?
+  onCamera              Boolean?
+  weeklyVideos          Int?
+  promotionAccount      Boolean?
+  terms                 Boolean
+  payout                Boolean
+  disclosure            Boolean
+  submittedAt           DateTime @default(now())
+
+  @@map("creator_application")
+}

@@ -12,13 +12,14 @@ interface OnboardingSetupProps {
   imageUrl: string;
   formId?: string;
   action?: string;
+  isSubmitting?: boolean;
   onBack?: () => void;
 }
 
 const SPRING = { type: "spring", stiffness: 320, damping: 30, mass: 0.7 } as const;
 
 export function OnboardingSetup({
-  title, subtitle, progress, children, imageUrl, formId, action, onBack,
+  title, subtitle, progress, children, imageUrl, formId, action, isSubmitting, onBack,
 }: OnboardingSetupProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -46,7 +47,7 @@ export function OnboardingSetup({
                   <ChevronLeft size={16} aria-hidden="true" /> Back
                 </button>}
                 <motion.button
-                  type="submit" form={formId}
+                  type="submit" form={formId} disabled={isSubmitting}
                   whileHover={prefersReducedMotion ? undefined : { scale: 1.04 }}
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                   transition={SPRING}
